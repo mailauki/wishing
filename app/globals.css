@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--primary: #8D4F28;
+	--on-primary: #FFFFFF;
+	--primary-container: #FFAE7F;
+	--on-primary-container: #673C22;
+	--secondary: #765948;
+	--on-secondary: #FFFFFF;
+	--secondary-container: #FDD5BF;
+	--on-secondary-container: #5C4131;
+	--tertiary: #636133;
+	--on-tertiary: #FFFFFF;
+	--tertiary-container: #E6E2A9;
+	--on-tertiary-container: #494923;
+  --background: #FFFFFF;
+	--on-background: #171717;
+	--surface: #FFF8F5;
+	--on-surface: #221A15;
+	--surface-variant: #F0DFD7;
+	--on-surface-variant: #52443C;
+	--outline: #85746B;
+	--outline-variant: #D7C2B8;
+	--surface-container-lowest: #FFFFFF;
+	--surface-container-low: #FFF1EB;
+	--surface-container: #FCEAE2;
+	--surface-container-high: #F6E5DD;
+	--surface-container-highest: #F0DFD7;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--on-background);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+	--primary: #FFB68C;
+	--on-primary: #532200;
+	--primary-container: #6F3812;
+	--on-primary-container: #FFDBC9;
+	--secondary: #E5BFAA;
+	--on-secondary: #432B1D;
+	--secondary-container: #5C4131;
+	--on-secondary-container: #FFDBC9;
+	--tertiary: #CDC991;
+	--on-tertiary: #333208;
+	--tertiary-container: #4A481D;
+	--on-tertiary-container: #E9E5AB;
+  --background: #0A0A0A;
+	--on-background: #EDEDED;
+	--surface: #1A120D;
+	--on-surface: #F0DFD7;
+	--surface-variant: #3D332D;
+	--on-surface-variant: #D7C2B8;
+	--outline: #7F7667;
+	--outline-variant: #52443C;
+	--surface-container-lowest: #140D08;
+	--surface-container-low: #221A15;
+	--surface-container: #271E19;
+	--surface-container-high: #312823;
+	--surface-container-highest: #3D332D;
   }
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--on-background);
   font-family: Arial, Helvetica, sans-serif;
 }
