@@ -23,6 +23,7 @@ const eslintConfig = defineConfig([
       ],
       'no-console': 'warn',
       'quotes': ['error', 'single'],
+      'jsx-quotes': ['error', 'prefer-single'],
       'indent': ['error', 2],
     },
   },
