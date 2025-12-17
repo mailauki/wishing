@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { type User } from '@supabase/supabase-js'
-import Textfield from '@/components/ui/textfield'
-import Button from '@/components/ui/button'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 
 // ...
 
@@ -79,15 +79,15 @@ export default function AccountForm({ user }: { user: User | null }) {
 
       {/* ... */}
 
-      <Textfield id='email' type='text' label='Email' value={user?.email} disabled />
-      <Textfield
+      <TextField id='email' type='text' label='Email' value={user?.email} disabled />
+      <TextField
         id='fullName'
         type='text'
         label='Full Name' 
         value={fullname || ''}
         onChange={(event) => setFullname(event.target.value)}
       />
-      <Textfield
+      <TextField
         id='username'
         type='text'
         label='Username' 
@@ -98,13 +98,14 @@ export default function AccountForm({ user }: { user: User | null }) {
       <Button
         onClick={() => updateProfile({ fullname, username, avatar_url })}
         disabled={loading}
-        label={loading ? 'Loading ...' : 'Update'}
-        variant='filled'
-      />
+        variant='contained'
+      >
+        {loading ? 'Loading ...' : 'Update'}
+      </Button>
 
       <div>
-        <form action='/auth/signout' method='post'>
-          <Button type='submit' label='Signout' variant='outlined' />
+        <form action='/signout' method='post'>
+          <Button type='submit' variant='outlined'>Signout</Button>
         </form>
       </div>
     </div>
