@@ -1,7 +1,7 @@
 import { signup } from '../actions';
 import { Button, Link, TextField, Typography } from '@mui/material';
 
-export default function LoginPage() {
+export default function ForgotPassword() {
   return (
     <>
       <div className='w-full max-w-sm flex flex-col items-center gap-6 text-center sm:items-start sm:text-left'>
