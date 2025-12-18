@@ -1,7 +1,5 @@
-import Button from '@mui/material/Button';
 import { signup } from '../actions';
-import TextField from '@mui/material/TextField';
-import { Link, Typography } from '@mui/material';
+import { Button, Link, TextField, Typography } from '@mui/material';
 
 export default function LoginPage() {
   return (
@@ -11,11 +9,10 @@ export default function LoginPage() {
         <Typography>Don't worry it happens. Please enter the address associated with your account</Typography>
         <form className='w-full flex flex-col gap-4'>
           <TextField label='Email' id='email' name='email' type='email' placeholder='this.is.it@email.com' />
-          <TextField label='Password' id='password' name='password' type='password' />
-          <Button formAction={signup} variant='contained'>Create Account</Button>
+          <Button formAction={signup} variant='contained' size='large' fullWidth>Send OTP</Button>
         </form>
       </div>
-      <div className='flex flex-col gap-4 text-base font-medium sm:flex-row'>
+      <div className='py-32'>
         <Typography>Remember your password? <Link href='/login'>Login</Link></Typography>
       </div>
     </>

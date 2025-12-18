@@ -5,6 +5,7 @@ import * as React from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/lib/theme';
+import Navbar from '@/components/navbar';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <Navbar />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
