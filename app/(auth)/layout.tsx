@@ -1,3 +1,4 @@
+import { Container, Stack } from '@mui/material';
 import * as React from 'react';
 
 export default function AuthLayout({
@@ -6,10 +7,10 @@ export default function AuthLayout({
 	children: React.ReactNode;
 }>) {
   return (
-    <div className='flex items-center justify-center'>
-      <main className='flex w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start'>
+    <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>
+      <Stack spacing={2} justifyContent='space-between' height={420}>
         {children}
-      </main>
-    </div>
+      </Stack>
+    </Container>
   )
 }

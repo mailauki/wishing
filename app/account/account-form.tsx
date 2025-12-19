@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { type User } from '@supabase/supabase-js'
-import { Button, TextField } from '@mui/material'
+import { Button, Divider, Stack, TextField, Typography } from '@mui/material'
 import UploadAvatar from './upload-avatar'
 
 export default function AccountForm({ user }: { user: User | null }) {
@@ -73,7 +73,17 @@ export default function AccountForm({ user }: { user: User | null }) {
   }
 
   return (
-    <div className='max-w-sm flex flex-col gap-4 p-4 mx-auto my-10'>
+    <Stack spacing={2}>
+      <Typography variant='h4' component='h1'>Account Settings</Typography>
+      <Stack direction='row' justifyContent='space-between'>
+        <Typography variant='subtitle1'>My Profile</Typography>
+        <div>
+          <form action='/signout' method='post'>
+            <Button type='submit' variant='outlined' fullWidth size='large'>Logout</Button>
+          </form>
+        </div>
+      </Stack>
+
       <UploadAvatar
         uid={user?.id ?? null}
         url={avatar_url}
@@ -114,14 +124,40 @@ export default function AccountForm({ user }: { user: User | null }) {
         variant='contained'
         size='large'
       >
-        {loading ? 'Loading ...' : 'Update'}
+        {loading ? 'Loading...' : 'Save Changes'}
       </Button>
 
-      <div>
-        <form action='/signout' method='post'>
-          <Button type='submit' variant='outlined' fullWidth size='large'>Signout</Button>
-        </form>
-      </div>
-    </div>
+      <Divider />
+
+      <Stack spacing={2}>
+        <Stack spacing={1}>
+          <Typography variant='h6' component='h3'>Remove Account</Typography>
+          <Typography>Permanently delete your account and remove all saved items associated with it</Typography>
+        </Stack>
+        <Stack direction='row' spacing={2}>
+          <Button color='error'>Delete Account</Button>
+        </Stack>
+      </Stack>
+    </Stack>
   )
 }
+
+// export default function AccountForm({ user }: { user: User | null }) {
+// 	const [state, formAction, pending] = useActionState(updateProfile, initialState)
+	
+// 	return (
+// 		<>
+//       <Stack spacing={2}>
+//         <Typography variant='h4' component='h1'>Account</Typography>
+//         <Typography variant='subtitle1'></Typography>
+//         <form className='w-full max-w-sm flex flex-col gap-4'>
+//           <TextField error={state?.message ? true : false} label='Email' id='email' name='email' type='email' placeholder='this.is.it@email.com' helperText={state?.message} disabled defaultValue={user?.email} />
+//           <TextField error={state?.message ? true : false} label='Password' id='password' name='password' type='password' />
+//           <Button formAction={formAction} variant='contained' size='large' fullWidth disabled={pending}>{pending ? 'Loading...' : 'Save Changes'}</Button>
+//         </form>
+//         <Link href='/forgot-password'>Forgot password</Link>
+//       </Stack>
+//       <Typography>Don't have an account yet? <Link href='/signup'>Signup</Link></Typography>
+// 			</>
+// 	)
+// }

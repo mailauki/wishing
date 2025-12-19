@@ -3,7 +3,7 @@ import * as React from 'react';
 import { createClient } from '@/lib/supabase/client';
 import Avatar from '@mui/material/Avatar';
 import ButtonBase from '@mui/material/ButtonBase';
-import { Tooltip } from '@mui/material';
+import { Stack, Tooltip } from '@mui/material';
 
 export default function UploadAvatar({
   uid,
@@ -77,7 +77,7 @@ export default function UploadAvatar({
   }
 
   return (
-    <>
+    <Stack direction='row' alignItems='center' justifyContent='center' sx={{ paddingBottom: '2rem' }}>
       <Tooltip title='Upload an image to use as your profile avatar'>
         <ButtonBase
           component='label'
@@ -91,8 +91,6 @@ export default function UploadAvatar({
               outlineOffset: '2px',
             },
             width: 150,
-            marginX: 'auto',
-            marginBottom: '2rem'
           }}
         >
           <Avatar
@@ -119,6 +117,6 @@ export default function UploadAvatar({
           />
         </ButtonBase>
       </Tooltip>
-    </>
+    </Stack>
   );
 }
