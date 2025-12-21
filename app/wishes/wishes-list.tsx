@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/client'
 import { type User } from '@supabase/supabase-js'
 import ItemCard from './item-card'
 import { Item } from '@/lib/types'
+import { Grid } from '@mui/material'
 
 export default function WishesList({ user }: { user: User | null }) {const supabase = createClient()
   // const [loading, setLoading] = useState(true)
@@ -40,8 +41,12 @@ export default function WishesList({ user }: { user: User | null }) {const supab
   }, [user, getWishes])
 
   return (
-    <>
-      {items.map((item) => <div key={item.id}><ItemCard item={item} /></div>)}
-    </>
+    <Grid container spacing={2}>
+      {items.map((item) => (
+        <Grid key={item.id} size={{ xs: 12, md: 6 }}>
+          <ItemCard item={item} />
+        </Grid>
+      ))}
+    </Grid>
   )
 }

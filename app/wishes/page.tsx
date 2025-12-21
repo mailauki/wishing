@@ -13,7 +13,7 @@ export default async function Wishes() {
   // if (!user) redirect('/login')
 
   return (
-    <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>
+    <Container maxWidth='md' sx={{ paddingY: '3rem' }}>
       <WishesList user={user} />
     </Container>
   )

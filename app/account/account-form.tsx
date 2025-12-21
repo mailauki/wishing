@@ -79,7 +79,7 @@ export default function AccountForm({ user }: { user: User | null }) {
         <Typography variant='subtitle1'>My Profile</Typography>
         <div>
           <form action='/signout' method='post'>
-            <Button type='submit' variant='outlined' fullWidth size='large'>Logout</Button>
+            <Button type='submit' variant='outlined'>Logout</Button>
           </form>
         </div>
       </Stack>
@@ -141,23 +141,3 @@ export default function AccountForm({ user }: { user: User | null }) {
     </Stack>
   )
 }
-
-// export default function AccountForm({ user }: { user: User | null }) {
-// 	const [state, formAction, pending] = useActionState(updateProfile, initialState)
-	
-// 	return (
-// 		<>
-//       <Stack spacing={2}>
-//         <Typography variant='h4' component='h1'>Account</Typography>
-//         <Typography variant='subtitle1'></Typography>
-//         <form className='w-full max-w-sm flex flex-col gap-4'>
-//           <TextField error={state?.message ? true : false} label='Email' id='email' name='email' type='email' placeholder='this.is.it@email.com' helperText={state?.message} disabled defaultValue={user?.email} />
-//           <TextField error={state?.message ? true : false} label='Password' id='password' name='password' type='password' />
-//           <Button formAction={formAction} variant='contained' size='large' fullWidth disabled={pending}>{pending ? 'Loading...' : 'Save Changes'}</Button>
-//         </form>
-//         <Link href='/forgot-password'>Forgot password</Link>
-//       </Stack>
-//       <Typography>Don't have an account yet? <Link href='/signup'>Signup</Link></Typography>
-// 			</>
-// 	)
-// }

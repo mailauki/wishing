@@ -14,22 +14,9 @@ export default function UploadAvatar({
   url: string | null
   onUpload: (url: string) => void
 }) {
-  // const [avatarSrc, setAvatarSrc] = React.useState<string | undefined>(undefined);
   const supabase = createClient();
   const [avatarUrl, setAvatarUrl] = React.useState<string | null>(url)
   const [uploading, setUploading] = React.useState(false)
-
-  // const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (file) {
-  //     // Read the file as a data URL
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       setAvatarSrc(reader.result as string);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
 
   React.useEffect(() => {
     async function downloadImage(path: string) {
