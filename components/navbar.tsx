@@ -1,6 +1,6 @@
 'use client'
 import { AccountCircle, Add, HomeFilled, Inventory, Menu, MenuOpen } from '@mui/icons-material';
-import { AppBar, Box, Divider, Drawer as MuiDrawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Stack, Typography, Paper } from '@mui/material';
+import { AppBar, Divider, Drawer as MuiDrawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Stack, Typography } from '@mui/material';
 import { CSSObject, styled, Theme } from '@mui/material/styles';
 import * as React from 'react';
 
@@ -8,12 +8,16 @@ const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
+  [theme.breakpoints.down('sm')]: {
+    width: '100%'
+  },
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
   borderColor: 'transparent',
+  backgroundColor: 'var(--surface)'
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -23,7 +27,11 @@ const closedMixin = (theme: Theme): CSSObject => ({
   }),
   overflowX: 'hidden',
   width: `calc(${theme.spacing(12)} + 1px)`,
+  [theme.breakpoints.down('sm')]: {
+    width: `calc(${theme.spacing(0)} + 1px)`,
+  },
   borderColor: 'transparent',
+  backgroundColor: 'var(--surface)'
 });
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -108,20 +116,19 @@ const NavItem = ({ text, icon, link, open }: { text: string, icon: React.ReactNo
   )
 }
 
-export default function Navbar({
-  children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+export default function Navbar() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Paper sx={{ display: 'flex', height: '100vh' }} elevation={0}>
+    <>
       <AppBar
         color='inherit'
         elevation={0}
         position='fixed'
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundColor: 'var(--surface)'
+        }}
       >
         <Toolbar sx={{ mx: 0.5 }}>
           <IconButton onClick={() => setOpen(!open)} color='inherit'>
@@ -170,13 +177,6 @@ export default function Navbar({
           />
         </List>
       </Drawer>
-
-      <Box component='main' sx={{ flexGrow: 1, pr: 3 }}>
-        <Toolbar />
-        <Paper elevation={1} sx={{ borderRadius: 6, height: '90%' }}>
-          {children}
-        </Paper>
-      </Box>
-    </Paper>
+    </>
   )
 }

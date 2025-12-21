@@ -7,12 +7,12 @@ import { Item } from '@/lib/types'
 import { Grid } from '@mui/material'
 
 export default function WishesList({ user }: { user: User | null }) {const supabase = createClient()
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [items, setItems] = useState<Item[]|[]>([])
 
   const getWishes = useCallback(async () => {
     try {
-      // setLoading(true)
+      setLoading(true)
 
       const { data, error, status } = await supabase
         .from('items')
@@ -20,25 +20,35 @@ export default function WishesList({ user }: { user: User | null }) {const supab
         .eq('user_id', user?.id)
 
       if (error && status !== 406) {
-        console.log(error)
         throw error
       }
 
       if (data) {
-        console.log(data)
         setItems(data)
       }
     } catch (error) {
       console.log(error)
       alert('Error loading items data!')
     } finally {
-      // setLoading(false)
+      setLoading(false)
     }
   }, [user, supabase])
 
   useEffect(() => {
     getWishes()
   }, [user, getWishes])
+
+  if (!items || items.length == 0) {
+    return (
+      <p>No items yet</p>
+    )
+  }
+
+  if (loading) {
+    return (
+      <p>Loading...</p>
+    )
+  }
 
   return (
     <Grid container spacing={2}>

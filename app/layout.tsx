@@ -6,6 +6,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/lib/theme';
 import Navbar from '@/components/navbar';
+import Main from '@/components/main';
+import { Paper } from '@mui/material';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -26,15 +28,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={roboto.variable}>
-      <body>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <Navbar>
+      <AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>
+          <Paper component='body' sx={{ display: 'flex', height: '100vh', backgroundColor: 'var(--surface)' }} elevation={0}>
+            <Navbar />
+            <Main>
               {children}
-            </Navbar>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
+            </Main>
+          </Paper>
+        </ThemeProvider>
+      </AppRouterCacheProvider>
     </html>
   );
 }
