@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, IconButton, Typography } from '@mui/mate
 
 export default function ItemCard({ item }: { item: Item }) {
   return (
-    <Card sx={{ minWidth: 240, height: 160, borderRadius: 6, backgroundColor: 'var(--surface-container-low)' }} elevation={0}>
+    <Card sx={{ minWidth: 240, minHeight: 160, borderRadius: 6, backgroundColor: 'var(--surface-container-low)' }} elevation={0}>
       <CardHeader
         title={item.name}
         subheader={item.room_name}

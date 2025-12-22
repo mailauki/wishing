@@ -151,7 +151,7 @@ export default function Navbar() {
           <NavItem
             text='Add items'
             icon={<Add />}
-            link='#'
+            link='/wishes/add'
             open={open}
           />
 					
