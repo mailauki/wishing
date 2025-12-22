@@ -5,7 +5,6 @@ import * as React from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/lib/theme';
-import Navbar from '@/components/navbar';
 import Main from '@/components/main';
 import { Paper } from '@mui/material';
 
@@ -26,12 +25,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang='en' className={roboto.variable}>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <Paper component='body' sx={{ display: 'flex', height: '100vh', backgroundColor: 'var(--surface)' }} elevation={0}>
-            <Navbar />
             <Main>
               {children}
             </Main>

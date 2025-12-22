@@ -4,7 +4,6 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 import * as React from 'react';
 
 export default function RoomSelect({ rooms }: {rooms: Room[] | null}) {
-	
   const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -13,7 +12,6 @@ export default function RoomSelect({ rooms }: {rooms: Room[] | null}) {
 
   return (
     <>
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <FormControl fullWidth>
         <InputLabel id='room'>Room</InputLabel>
         <Select

@@ -1,7 +1,9 @@
 'use client'
 import { AccountCircle, Add, HomeFilled, Menu, MenuOpen } from '@mui/icons-material';
-import { AppBar, Divider, Drawer as MuiDrawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Stack, Typography } from '@mui/material';
+import { AppBar, Divider, Drawer as MuiDrawer, IconButton, List, ListItemIcon, ListItemText, Toolbar, Stack, Typography, ListItem, ListItemButton, Button, Fab, Box, Link } from '@mui/material';
 import { CSSObject, styled, Theme } from '@mui/material/styles';
+import { User } from '@supabase/supabase-js';
+import { usePathname } from 'next/navigation';
 import * as React from 'react';
 
 const drawerWidth = 240;
@@ -59,16 +61,31 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const NavItem = ({ text, icon, link, open }: { text: string, icon: React.ReactNode, link: string, open: boolean }) => {
+const NavItem = ({
+  text, icon, link, open, pathname,
+}: {
+	text: string,
+	icon: React.ReactNode,
+	link: string,
+	open: boolean,
+	pathname: string,
+}) => {
   return (
-    <ListItem key={text} sx={{ display: 'block' }}>
+    <ListItem
+      key={text}
+      sx={{
+        display: 'block',
+        height: 68,
+        py: open ? 1 : 2
+      }}
+    >
       <ListItemButton
         href={link}
         sx={[
           {
-            minHeight: 40,
+            minHeight: open ? 48 : 30,
             px: 2.5,
-            py: 0.5,
+            py: open ? 1 : 0,
             borderRadius: 6,
           },
           open ? {
@@ -77,7 +94,7 @@ const NavItem = ({ text, icon, link, open }: { text: string, icon: React.ReactNo
             justifyContent: 'center',
           },
         ]}
-        selected={text == 'Add items'}
+        selected={pathname == link}
       >
         <ListItemIcon
           sx={[
@@ -116,8 +133,44 @@ const NavItem = ({ text, icon, link, open }: { text: string, icon: React.ReactNo
   )
 }
 
-export default function Navbar() {
+export default function Navbar({ user }: { user: User }) {
   const [open, setOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  if(!user) {
+    return (
+      <>
+        <AppBar
+          color='inherit'
+          elevation={0}
+          position='fixed'
+          sx={{
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            backgroundColor: 'var(--surface)',
+          }}
+        >
+          <Toolbar sx={{ mx: 0.5 }}>
+            <Link
+              variant='h6'
+              underline='none'
+              color='inherit'
+              href='/'
+              sx={{
+                position: 'absolute',
+                zIndex: 1,
+                left: 0,
+                right: 0,
+                margin: '0 auto',
+                width: 'fit-content',
+              }}
+            >
+							Wishing
+            </Link>
+          </Toolbar>
+        </AppBar>
+      </>
+    )
+  }
 
   return (
     <>
@@ -127,16 +180,32 @@ export default function Navbar() {
         position='fixed'
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: 'var(--surface)'
+          backgroundColor: 'var(--surface)',
         }}
       >
         <Toolbar sx={{ mx: 0.5 }}>
-          <IconButton onClick={() => setOpen(!open)} color='inherit'>
+          <IconButton 
+            onClick={() => setOpen(!open)}
+            color='inherit'
+          >
             {open ? <MenuOpen /> : <Menu />}
           </IconButton>
-          <Typography variant='h6' noWrap component='div' sx={{ ml: 6 }}>
-            Wishing
-          </Typography>
+          <Link
+            variant='h6'
+            underline='none'
+            color='inherit'
+            href='/'
+            sx={{
+              position: 'absolute',
+              zIndex: 1,
+              left: 0,
+              right: 0,
+              margin: '0 auto',
+              width: 'fit-content',
+            }}
+          >
+							Wishing
+          </Link>
         </Toolbar>
       </AppBar>
 
@@ -148,12 +217,31 @@ export default function Navbar() {
         <Toolbar />
 
         <List disablePadding sx={{ pt: 2 }}>
-          <NavItem
-            text='Add items'
-            icon={<Add />}
-            link='/add'
-            open={open}
-          />
+          <Button
+            variant='contained'
+            disableElevation
+            href='/add'
+            color='secondary'
+            sx={{
+              minHeight: 64,
+              minWidth: 64,
+              borderRadius: 4,
+              ml: 2,
+              px: 2.5,
+              opacity: { xs: 0, sm: 1 }
+            }}
+          >
+            <Add />
+            {open && (
+              <Typography
+                variant='body1'
+                textTransform='initial'
+                sx={{ px: 2.5 }}
+              >
+								Add item
+              </Typography>
+            )}
+          </Button>
 					
           <Divider sx={{ my: 2, opacity: 0 }} />
 
@@ -162,15 +250,31 @@ export default function Navbar() {
             icon={<HomeFilled />}
             link='/'
             open={open}
+            pathname={pathname}
           />
           <NavItem
             text='Account'
             icon={<AccountCircle />}
             link='/account'
             open={open}
+            pathname={pathname}
           />
         </List>
       </Drawer>
+      <Box
+        position='absolute'
+        right={0} bottom={0}
+        sx={{ px: 4, py: 14, opacity: { xs: 1, sm: 0 } }}
+      >
+        <Fab
+          color='secondary'
+          href='/add'
+          size='large'
+          sx={{ borderRadius: 4 }}
+        >
+          <Add />
+        </Fab>
+      </Box>
     </>
   )
 }

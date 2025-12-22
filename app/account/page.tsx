@@ -1,20 +1,17 @@
-// import { redirect } from 'next/navigation'
+import Welcome from '@/components/welcome'
 import AccountForm from './account-form'
-import { createClient } from '@/lib/supabase/server'
 import { Container } from '@mui/material'
+import { Suspense, use } from 'react'
+import { getUser } from '@/lib/hooks/user'
 
-export default async function Account() {
-  const supabase = await createClient()
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  // if (!user) redirect('/login')
+export default function Account() {
+  const user = use(getUser())
 
   return (
-    <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>
-      <AccountForm user={user} />
-    </Container>
+    <Suspense fallback={<Welcome />}>
+      <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>
+        <AccountForm user={user} />
+      </Container>
+    </Suspense>
   )
 }

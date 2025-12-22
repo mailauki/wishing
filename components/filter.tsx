@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 export default function Filter() {
   const params = useParams();
   const { slug } = params;
+	
   return (
     <AppBar
       position='sticky'

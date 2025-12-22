@@ -1,36 +1,17 @@
 // import Link from '@/components/link';
-import { Button, Container, Link, Stack, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import WishesList from './(wishes)/wishes-list';
-import { createClient } from '@/lib/supabase/server';
 import Filter from '@/components/filter';
+import Welcome from '@/components/welcome';
+import { use } from 'react';
+import { getItems } from '@/lib/hooks/items';
+import { getUser } from '@/lib/hooks/user';
 
-export default async function Home() {
-  const supabase = await createClient()
+export default function Home() {
+  const items = use(getItems())
+  const user = use(getUser())
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const { data: items } = await supabase.from('items')
-    .select('*')
-    .match({ user_id: user?.id })
-
-  if(!user) {
-    return (
-      <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>
-        <Stack spacing={2} justifyContent='space-between' height={420}>
-          <Stack spacing={2}>
-            <Typography variant='h4' component='h1'>Welcome</Typography>
-            <Typography variant='subtitle1'>Let's get started!</Typography>
-            <div className='w-full max-w-sm flex'>
-              <Button href='/login' variant='contained' size='large' fullWidth>Login</Button>
-            </div>
-          </Stack>
-          <Typography>Don't have an account yet? <Link href='/signup'>Signup</Link></Typography>
-        </Stack>
-      </Container>
-    );
-  }
+  if (!user) return <Welcome />
 
   return (
     <>

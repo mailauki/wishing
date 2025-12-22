@@ -4,6 +4,12 @@ import { ArrowOutward, Delete, Edit } from '@mui/icons-material'
 import { Button, Card, CardActions, CardContent, CardHeader, Chip, Divider, Stack, Typography } from '@mui/material'
 
 export default function ItemDetails({ item }: { item: Item }) {
+  if(!item) {
+    return (
+      <p>No item found</p>
+    )
+  }
+	
   return (
     <Stack spacing={2}>
       <Card
@@ -21,31 +27,25 @@ export default function ItemDetails({ item }: { item: Item }) {
           action={<Chip label={item.room_name} />}
         />
         <CardContent>
-          {item.description ? (
+          {item.description && (
             <Typography variant='body2' sx={{ color: 'text.secondary' }}>
               {item.description}
             </Typography>
-          ) : (
-            <></>
           )}
-          {(item.description) && (item.color || item.notes) ? <Divider sx={{ my: 2 }} /> : <></>}
-          {item.color ? (
+          {((item.description) && (item.color || item.notes)) && <Divider sx={{ my: 2 }} />}
+          {item.color && (
             <Stack direction='row' spacing={1}>
               <Typography variant='body2' sx={{ color: 'text.secondary' }}>Color:</Typography>
               <Typography>{item.color}</Typography>
             </Stack>
-          ) : (
-            <></>
           )}
-          {item.notes ? (
+          {item.notes && (
             <Stack direction='row' spacing={1}>
               <Typography variant='body2' sx={{ color: 'text.secondary' }}>Notes:</Typography>
               <Typography sx={{ whiteSpace: 'pre-line' }}>
                 {item.notes}
               </Typography>
             </Stack>
-          ) : (
-            <></>
           )}
         </CardContent>
         <CardActions>
@@ -68,6 +68,7 @@ export default function ItemDetails({ item }: { item: Item }) {
           variant='contained'
           color='inherit'
           startIcon={<Edit />}
+          disableElevation
         >
 					Edit this item
         </Button>
