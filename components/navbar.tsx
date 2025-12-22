@@ -1,5 +1,5 @@
 'use client'
-import { AccountCircle, Add, HomeFilled, Inventory, Menu, MenuOpen } from '@mui/icons-material';
+import { AccountCircle, Add, HomeFilled, Menu, MenuOpen } from '@mui/icons-material';
 import { AppBar, Divider, Drawer as MuiDrawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Stack, Typography } from '@mui/material';
 import { CSSObject, styled, Theme } from '@mui/material/styles';
 import * as React from 'react';
@@ -151,7 +151,7 @@ export default function Navbar() {
           <NavItem
             text='Add items'
             icon={<Add />}
-            link='/wishes/add'
+            link='/add'
             open={open}
           />
 					
@@ -161,12 +161,6 @@ export default function Navbar() {
             text='Home'
             icon={<HomeFilled />}
             link='/'
-            open={open}
-          />
-          <NavItem
-            text='Wishes'
-            icon={<Inventory />}
-            link='/wishes'
             open={open}
           />
           <NavItem

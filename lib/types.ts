@@ -8,6 +8,7 @@ export type Item = {
 	color?: string,
 	notes?: string,
 	room_name?: string,
+	slug: string,
 }
 
 export type Room = {
