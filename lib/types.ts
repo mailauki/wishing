@@ -14,3 +14,5 @@ export type Item = {
 export type Room = {
 	name: 'Bedroom'|'Kitchen'|'Living room'|'Bathroom'
 }
+
+export type View = 'list'|'module'|'quilt'

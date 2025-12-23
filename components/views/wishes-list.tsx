@@ -1,7 +1,7 @@
 'use client'
 import { Grid } from '@mui/material'
-import ItemCard from './item-card'
 import { Item } from '@/lib/types'
+import ItemCard from '../item-card'
 
 export default function WishesList({ items }: { items: Item[] | null }) {
   if (!items || items.length == 0) {
@@ -13,7 +13,7 @@ export default function WishesList({ items }: { items: Item[] | null }) {
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
       {items.map((item) => (
-        <Grid key={item.id} size={{ xs: 12, md: 6 }}>
+        <Grid key={item.id} size={12}>
           <ItemCard item={item} />
         </Grid>
       ))}

@@ -266,14 +266,16 @@ export default function Navbar({ user }: { user: User }) {
         right={0} bottom={0}
         sx={{ px: 4, py: 14, opacity: { xs: 1, sm: 0 } }}
       >
-        <Fab
-          color='secondary'
-          href='/add'
-          size='large'
-          sx={{ borderRadius: 4 }}
-        >
-          <Add />
-        </Fab>
+        {pathname == '/' && (
+          <Fab
+            color='secondary'
+            href='/add'
+            size='large'
+            sx={{ borderRadius: 4 }}
+          >
+            <Add />
+          </Fab>
+        )}
       </Box>
     </>
   )

@@ -1,5 +1,5 @@
-import Welcome from '@/components/welcome'
-import AccountForm from './account-form'
+import Welcome from '@/components/views/welcome'
+import AccountForm from '@/components/account-form'
 import { Container } from '@mui/material'
 import { Suspense, use } from 'react'
 import { getUser } from '@/lib/hooks/user'
