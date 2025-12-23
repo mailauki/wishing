@@ -86,7 +86,8 @@ export async function loginUser(_initialState: unknown, formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/account')
+  // redirect('/account')
+  redirect('/')
 }
 
 export async function forgotPassword(formData: FormData) {

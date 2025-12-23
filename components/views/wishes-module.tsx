@@ -1,5 +1,5 @@
 'use client'
-import { Grid } from '@mui/material'
+import { Grid, Stack, Typography } from '@mui/material'
 import { Item } from '@/lib/types'
 import ItemCard from '../item-card'
 
@@ -11,12 +11,23 @@ export default function WishesModule({ items }: { items: Item[] | null }) {
   }
 
   return (
-    <Grid container spacing={2} sx={{ py: 2 }}>
-      {items.map((item) => (
-        <Grid key={item.id} size={6}>
-          <ItemCard item={item} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Stack direction='row' spacing={1} alignItems='baseline'>
+        <Typography
+          variant='overline'
+          sx={{ color: 'text.secondary' }}
+        >
+								Items
+        </Typography>
+        <Typography>{items?.length}</Typography>
+      </Stack>
+      <Grid container spacing={2} sx={{ py: 2 }}>
+        {items.map((item) => (
+          <Grid key={item.id} size={6}>
+            <ItemCard item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   )
 }

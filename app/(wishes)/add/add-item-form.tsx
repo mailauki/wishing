@@ -4,13 +4,13 @@ import { type User } from '@supabase/supabase-js'
 import { addItem } from '../actions'
 import { useActionState } from 'react'
 import RoomSelect from './room-select'
-import { Room } from '@/lib/types'
+import { RoomProps } from '@/lib/types'
 
 const initialState = {
   message: '',
 }
 
-export default function AddItemForm({ user, rooms }: { user: User | null, rooms: Room[] | null }) {
+export default function AddItemForm({ user, rooms }: { user: User | null, rooms: RoomProps[] | null }) {
   const [state, formAction, pending] = useActionState(addItem, initialState)
 
   return (
