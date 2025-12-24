@@ -19,10 +19,8 @@ export default function Main({
         sx={{
           flexGrow: 1,
           ml: { xs: 1, sm: user ? 0 : 3 }, mr: { xs: 1, sm: 2, md: 3 }, mt: 8,
-          borderRadius: 6, 
-          height: '88%', 
-          backgroundColor: 'var(--surface-container-lowest)', 
-          overflowX: 'hidden', overflowY: 'auto' 
+          height: '88%',
+          overflowX: 'hidden', overflowY: 'auto'
         }}
       >
         {children}

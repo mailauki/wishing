@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang='en' className={roboto.variable}>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <Paper component='body' sx={{ display: 'flex', height: '100vh', backgroundColor: 'var(--surface)' }} elevation={0}>
+          <Paper component='body' sx={{ display: 'flex', height: '100vh' }}>
             <Main>
               {children}
             </Main>

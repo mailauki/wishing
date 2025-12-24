@@ -1,33 +1,37 @@
 import { formatCurrency } from '@/lib/helpers/format-currency';
 import { Item } from '@/lib/types';
-import { ArrowOutward } from '@mui/icons-material';
-import { Card, CardActionArea, CardActions, CardHeader, Chip, IconButton, Typography } from '@mui/material';
+import { Category } from '@mui/icons-material';
+import { Avatar, ListItemAvatar, ListItemButton, ListItemText, Typography } from '@mui/material';
 
 export default function ItemRow({ item }: { item: Item }) {
   return (
-    <Card
+    <ListItemButton
       sx={{
-        minWidth: 240,
-        borderRadius: 6,
-        backgroundColor: 'var(--surface-container-low)',
+        borderRadius: 2,
+        backgroundColor: 'var(--surface)'
       }}
-      elevation={0}
+      href={`/${item.slug}`}
     >
-      <CardActionArea href={`/${item.slug}`}>
-        <CardHeader
-          title={item.name}
-          subheader={item.brand}
-          action={<Chip label={item.room_name} />}
-        />
-      </CardActionArea>
-      <CardActions>
-        <Typography variant='h6' component='p' sx={{ px: 1, flexGrow: 1 }}>
-          {formatCurrency(item.price)}
-        </Typography>
-        <IconButton href={item.url} target='_blank'>
-          <ArrowOutward />
-        </IconButton>
-      </CardActions>
-    </Card>
+      <ListItemAvatar sx={{ width: 75 }}>
+        <Avatar
+          variant='rounded'
+          sx={{
+            position: 'absolute',
+            left: 0, top: 0,
+            height: '100%',
+            width: 75
+          }}
+        >
+          <Category />
+        </Avatar>
+      </ListItemAvatar>
+      <ListItemText
+        primary={item.name}
+        secondary={item.brand}
+      />
+      <Typography>
+        {formatCurrency(item.price)}
+      </Typography>
+    </ListItemButton>
   )
 }

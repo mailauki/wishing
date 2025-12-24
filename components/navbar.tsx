@@ -141,12 +141,12 @@ export default function Navbar({ user }: { user: User }) {
     return (
       <>
         <AppBar
-          color='inherit'
-          elevation={0}
+          // color='inherit'
+          // elevation={0}
           position='fixed'
           sx={{
             zIndex: (theme) => theme.zIndex.drawer + 1,
-            backgroundColor: 'var(--surface)',
+            // backgroundColor: 'var(--surface)',
           }}
         >
           <Toolbar sx={{ mx: 0.5 }}>
@@ -175,12 +175,13 @@ export default function Navbar({ user }: { user: User }) {
   return (
     <>
       <AppBar
-        color='inherit'
-        elevation={0}
+        // color='inherit'
+        // elevation={0}
+        // enableColorOnDark
         position='fixed'
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: 'var(--surface)',
+          // backgroundColor: 'var(--surface)',
         }}
       >
         <Toolbar sx={{ mx: 0.5 }}>
@@ -211,7 +212,7 @@ export default function Navbar({ user }: { user: User }) {
 
       <Drawer
         variant='permanent'
-        elevation={0}
+        // elevation={0}
         open={open}
       >
         <Toolbar />

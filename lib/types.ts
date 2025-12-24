@@ -1,5 +1,7 @@
+import { UUID } from 'crypto'
+
 export type Item = {
-	id: number,
+	id: UUID | number,
 	name: string,
 	price: number,
 	url: string,

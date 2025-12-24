@@ -7,17 +7,19 @@ export default function ItemCard({ item }: { item: Item }) {
   return (
     <Card
       sx={{
-        minWidth: 240,
-        borderRadius: 6,
-        backgroundColor: 'var(--surface-container-low)',
+        minWidth: 160,
       }}
-      elevation={0}
     >
       <CardActionArea href={`/${item.slug}`}>
         <CardHeader
           title={item.name}
           subheader={item.brand}
-          action={<Chip label={item.room_name} />}
+          action={
+            <Chip
+              sx={{ display: { xs: 'none', sm: 'flex' }}}
+              label={item.room_name}
+            />
+          }
         />
       </CardActionArea>
       <CardActions>
