@@ -17,7 +17,11 @@ export default function WishesList({ items }: { items: Item[] }) {
       </Stack>
       <List>
         {items.map((item) => (
-          <ListItem key={item.id} disableGutters sx={{ py: 0.25 }}>
+          <ListItem
+            key={item.id}
+            disableGutters
+            sx={{ py: 0.25 }}
+          >
             <ItemRow item={item} />
           </ListItem>
         ))}

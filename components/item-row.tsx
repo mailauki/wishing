@@ -19,7 +19,8 @@ export default function ItemRow({ item }: { item: Item }) {
             position: 'absolute',
             left: 0, top: 0,
             height: '100%',
-            width: 75
+            width: 75,
+            borderRadius: 2,
           }}
         >
           <Category />
