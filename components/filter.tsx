@@ -1,28 +1,44 @@
 'use client'
 import { Room, RoomProps, View } from '@/lib/types';
-import { FilterAlt, ArrowDropDown, ViewList, ViewModule, Done } from '@mui/icons-material';
-import { AppBar, Box, Button, Chip, ToggleButton, Toolbar } from '@mui/material';
+import { ViewList, ViewModule, Done } from '@mui/icons-material';
+import { AppBar, Box, ToggleButton, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from '@mui/material/ToggleButtonGroup';
 import * as React from 'react';
 
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-  [`& .${toggleButtonGroupClasses.grouped}`]: {
-    margin: theme.spacing(0.5),
-    border: 0,
-    borderRadius: theme.shape.borderRadius,
-    [`&.${toggleButtonGroupClasses.disabled}`]: {
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(() => ({
+  gap: '0.25rem',
+  height: 32,
+  [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}, & .${toggleButtonGroupClasses.lastButton}`]:
+    {
+      borderRadius: 6,
+      fontWeight: 400,
+      fontSize: '0.815rem',
+      backgroundColor: 'var(--surface-container)',
       border: 0,
     },
+  [`& .${toggleButtonGroupClasses.firstButton}`]: {
+    borderTopLeftRadius: 40,
+    borderBottomLeftRadius: 40,
   },
-  [`& .${toggleButtonGroupClasses.middleButton},& .${toggleButtonGroupClasses.lastButton}`]:
+  [`& .${toggleButtonGroupClasses.lastButton}`]: {
+    borderTopRightRadius: 40,
+    borderBottomRightRadius: 40,
+  },
+  [`& .${toggleButtonGroupClasses.selected}`]: {
+    borderRadius: 40,
+    backgroundColor: 'var(--secondary-container)',
+  },
+  [`& .${toggleButtonGroupClasses.firstButton}:hover, & .${toggleButtonGroupClasses.middleButton}:hover, & .${toggleButtonGroupClasses.lastButton}:hover`]:
     {
-      marginLeft: -1,
-      borderLeft: '1px solid transparent',
+      borderRadius: 12,
+      backgroundColor: 'var(--surface-container-high)',
     },
 }));
+
+
 
 export default function Filter({
   view, handleView, selectedRooms, handleRooms, rooms,
@@ -47,63 +63,66 @@ export default function Filter({
     >
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
-          <Button
+          {/* <Button
             color='inherit'
             startIcon={<FilterAlt />}
             endIcon={<ArrowDropDown sx={{ ml: 1.5 }} />}
             sx={{ borderRadius: 6, px: 2.5 }}
           >
 						Filter
-          </Button>
+          </Button> */}
         </Box>
-        <StyledToggleButtonGroup
+        <ToggleButtonGroup
           exclusive
           value={view}
           onChange={handleView}
-          aria-label='items content view'
         >
-          <ToggleButton value='list' aria-label='list'>
+          <ToggleButton
+            value='list'
+            aria-label='list'
+            sx={{
+              height: 40,
+              borderTopLeftRadius: 20,
+              borderBottomLeftRadius: 20,
+              paddingInlineStart: 1.5,
+            }}
+          >
             <ViewList />
           </ToggleButton>
-          <ToggleButton value='module' aria-label='module'>
+          <ToggleButton
+            value='module'
+            aria-label='module'
+            sx={{
+              height: 40,
+              borderTopRightRadius: 20,
+              borderBottomRightRadius: 20,
+              paddingInlineEnd: 1.5,
+            }}
+          >
             <ViewModule />
           </ToggleButton>
-        </StyledToggleButtonGroup>
+        </ToggleButtonGroup>
       </Toolbar>
-      <Toolbar>
-        {/* <Stack component='ul' direction='row' spacing={1}>
-          {rooms?.map((room: Room) => (
-            <ListItem key={room.name} disablePadding>
-              <ListItemButton
-                selected={selectedRooms.includes(room) ? true : false}
-                disableGutters
-              >
-                <Chip
-                  icon={selectedRooms.includes(room) ? <Done /> : <></>}
-                  label={room.name}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </Stack>
-				
-        <pre>{JSON.stringify(selectedRooms, null, 2)}</pre> */}
 
+      <Toolbar>
         <StyledToggleButtonGroup
           value={selectedRooms}
           onChange={handleRooms}
           aria-label='rooms filter'
         >
           {rooms?.map((room) => (
-            <Chip
+            <ToggleButton
               key={room.name}
-              component={ToggleButton}
-              aria-label={room.name}
               value={room.name}
-              label={room.name}
-              selected={selectedRooms?.includes(room.name)}
-              icon={<Done sx={{ display: selectedRooms?.includes(room.name) ? 'block' : 'none' }} />}
-            />
+              aria-label={room.name}
+              sx={{
+                paddingInlineStart: 2,
+                paddingInlineEnd: 2,
+              }}
+            >
+              {selectedRooms?.includes(room.name) && <Done sx={{ mr: 1 }} />}
+              {room.name}
+            </ToggleButton>
           ))}
         </StyledToggleButtonGroup>
       </Toolbar>

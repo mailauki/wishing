@@ -11,6 +11,7 @@ export type Item = {
 	notes?: string,
 	room_name?: Room,
 	slug: string,
+	image?: string,
 }
 
 export type RoomProps = {
@@ -19,4 +20,4 @@ export type RoomProps = {
 
 export type Room = 'Bedroom'|'Kitchen'|'Living room'|'Bathroom'
 
-export type View = 'list'|'module'|'quilt'
+export type View = 'list'|'module'

@@ -19,6 +19,7 @@ export async function addItem(_initialState: unknown, formData: FormData) {
     color: formData.get('color'),
     description: formData.get('description'),
     notes: formData.get('notes'),
+    slug: formData.get('name')!.toString().toLowerCase().split(' ').join('-')
   }
 
   console.log(data)
@@ -31,5 +32,5 @@ export async function addItem(_initialState: unknown, formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/wishes')
+  redirect('/')
 }

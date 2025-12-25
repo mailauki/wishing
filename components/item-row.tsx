@@ -12,25 +12,27 @@ export default function ItemRow({ item }: { item: Item }) {
       }}
       href={`/${item.slug}`}
     >
-      <ListItemAvatar sx={{ width: 75 }}>
-        <Avatar
-          variant='rounded'
-          sx={{
-            position: 'absolute',
-            left: 0, top: 0,
-            height: '100%',
-            width: 75,
-            borderRadius: 2,
-          }}
-        >
-          <Category />
-        </Avatar>
-      </ListItemAvatar>
+      {item.image && (
+        <ListItemAvatar sx={{ width: 75 }}>
+          <Avatar
+            variant='rounded'
+            sx={{
+              position: 'absolute',
+              left: 0, top: 0,
+              height: '100%',
+              width: 75,
+              borderRadius: 2,
+            }}
+          >
+            <Category />
+          </Avatar>
+        </ListItemAvatar>
+      )}
       <ListItemText
-        primary={item.name}
+        primary={<Typography noWrap>{item.name}</Typography>}
         secondary={item.brand}
       />
-      <Typography>
+      <Typography sx={{ ml: 2 }}>
         {formatCurrency(item.price)}
       </Typography>
     </ListItemButton>

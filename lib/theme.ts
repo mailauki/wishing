@@ -54,6 +54,9 @@ const theme = createTheme({
       },
     },
   },
+  // shape: {
+  //   borderRadius: 10,
+  // },
   components: {
     MuiCard: {
       styleOverrides: {
@@ -63,7 +66,7 @@ const theme = createTheme({
       },
       defaultProps: {
         variant: 'flat',
-        elevation: 3,
+        elevation: 2,
       },
     },
     MuiButton: {
@@ -73,7 +76,10 @@ const theme = createTheme({
             {
               props: { variant: 'filled' },
               style: {
-                border: '4px dashed',
+                backgroundColor: 'var(--surface-container)',
+                '&:hover': {
+                  backgroundColor: 'var(--surface-container-high)',
+                },
               },
             },
           ],

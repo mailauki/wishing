@@ -40,7 +40,7 @@ export default function AddItemForm({ user, rooms }: { user: User | null, rooms:
             name='name'
             error={state?.message ? true : false}
             helperText='Name of the item'
-            // required
+            required
           />
           <TextField
             label='Price'
@@ -48,25 +48,17 @@ export default function AddItemForm({ user, rooms }: { user: User | null, rooms:
             name='price'
             error={state?.message ? true : false}
             helperText='Price of the item as a plain number'
-            // required
-          />
-          <RoomSelect rooms={rooms} />
-          {/* <TextField
-            label='Room'
-            id='room'
-            name='room'
-            error={state?.message ? true : false}
-            helperText='Room that the item is for or will be placed in'
             required
-          /> */}
+          />
           <TextField
             label='Link'
             id='url'
             name='url'
             error={state?.message ? true : false}
             helperText='Source url of the item'
-            // required
+            required
           />
+          <RoomSelect rooms={rooms} />
           <TextField
             label='Brand'
             id='brand'
@@ -90,6 +82,8 @@ export default function AddItemForm({ user, rooms }: { user: User | null, rooms:
             id='notes'
             name='notes'
             helperText='Any addition information or notes about the item'
+            multiline
+            rows={4}
           />
 
           <Button formAction={formAction} variant='contained' size='large' fullWidth disabled={pending}>{pending ? 'Loading...' : 'Add item'}</Button>
