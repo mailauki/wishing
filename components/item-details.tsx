@@ -1,7 +1,7 @@
 import { formatCurrency } from '@/lib/helpers/format-currency'
 import { Item } from '@/lib/types'
 import { ArrowOutward, Delete, Edit } from '@mui/icons-material'
-import { Button, Card, CardActions, CardContent, CardHeader, Chip, Divider, Stack, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, Chip, Divider, Stack, Typography } from '@mui/material'
 
 export default function ItemDetails({ item }: { item: Item }) {
   if(!item) {
@@ -16,11 +16,16 @@ export default function ItemDetails({ item }: { item: Item }) {
         sx={{
           minWidth: 240,
           minHeight: 160,
-          borderRadius: 6,
-          backgroundColor: 'var(--surface-container-low)',
         }}
-        elevation={0}
       >
+        {item.image && (
+          <CardMedia
+            image={item.image}
+            title={item.name}
+            component='img'
+            sx={{ width: '100%', objectFit: 'contain', objectPosition: 'center' }}
+          />
+        )}
         <CardHeader
           title={item.name}
           subheader={item.brand}
@@ -69,6 +74,7 @@ export default function ItemDetails({ item }: { item: Item }) {
           color='inherit'
           startIcon={<Edit />}
           disableElevation
+          href={`/${item.slug}/edit`}
         >
 					Edit this item
         </Button>

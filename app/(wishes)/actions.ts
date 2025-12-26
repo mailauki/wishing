@@ -34,3 +34,37 @@ export async function addItem(_initialState: unknown, formData: FormData) {
   revalidatePath('/', 'layout')
   redirect('/')
 }
+
+export async function editItem(_initialState: unknown, formData: FormData) {
+  const supabase = await createClient()
+
+  const data = {
+    id: formData.get('id'),
+    user_id: formData.get('user'),
+    name: formData.get('name'),
+    price: formData.get('price'),
+    url: formData.get('url'),
+    room_name: formData.get('room') as Room | '',
+    brand: formData.get('brand'),
+    color: formData.get('color'),
+    description: formData.get('description'),
+    notes: formData.get('notes'),
+    slug: formData.get('slug'),
+    image: formData.get('image'),
+  }
+
+  console.log(data)
+
+  const { error } = await supabase
+    .from('items')
+    .update(data)
+    .eq('id', data.id)
+
+  if (error) {
+    console.log(error)
+    return error
+  }
+
+  revalidatePath('/', 'layout')
+  redirect(`/${data.slug}`)
+}

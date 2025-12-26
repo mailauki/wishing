@@ -8,20 +8,23 @@ export default function ItemRow({ item }: { item: Item }) {
     <ListItemButton
       sx={{
         borderRadius: 2,
-        backgroundColor: 'var(--surface)'
+        backgroundColor: 'var(--surface)',
+        height: 100,
       }}
       href={`/${item.slug}`}
     >
       {item.image && (
-        <ListItemAvatar sx={{ width: 75 }}>
+        <ListItemAvatar sx={{ width: 100 }}>
           <Avatar
             variant='rounded'
+            src={item.image}
             sx={{
               position: 'absolute',
               left: 0, top: 0,
               height: '100%',
-              width: 75,
+              width: 100,
               borderRadius: 2,
+              backgroundColor: 'var(--surface-container-highest)'
             }}
           >
             <Category />
@@ -29,8 +32,10 @@ export default function ItemRow({ item }: { item: Item }) {
         </ListItemAvatar>
       )}
       <ListItemText
+        inset={item.image ? false : true}
         primary={<Typography noWrap>{item.name}</Typography>}
         secondary={item.brand}
+        sx={{ pl: item.image ? 0 : 12.5 }}
       />
       <Typography sx={{ ml: 2 }}>
         {formatCurrency(item.price)}

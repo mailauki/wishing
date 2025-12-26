@@ -1,4 +1,4 @@
-import { formatCurrency } from '@/lib/helpers/format-currency'
+import { totalItems } from '@/lib/helpers/total-items'
 import { Item, Room, RoomProps } from '@/lib/types'
 import { ExpandMore } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Container, List, ListItem, ListItemText, Typography } from '@mui/material'
@@ -13,21 +13,11 @@ export default function RoomTotals({
     Object.assign({
       ...room, 
       total: 
-        items.reduce((accumulator, currentValue) => {
-          if (currentValue.room_name === room.name) {
-            return accumulator + currentValue.price
-          }
-          return accumulator
-        }, 0)
-    }) as { name: Room, total: number }
+				totalItems(items.filter((item) => item.room_name === room.name))
+    }) as { name: Room, total: string }
   ))
 
-  const allRoomsTotal = items.reduce((accumulator, currentValue) => {
-    return accumulator + currentValue.price
-  }, 0)
-
   return (
-		
     <Container maxWidth='xs' sx={{ mx: 0 }}>
       <Accordion
         variant='flat'
@@ -50,7 +40,7 @@ export default function RoomTotals({
                   }
                 />
                 <Typography>
-                  {formatCurrency(room.total)}
+                  {room.total}
                 </Typography>
               </ListItem>
             ))}
@@ -71,7 +61,7 @@ export default function RoomTotals({
                 color='secondary'
                 fontWeight={500}
               >
-                {formatCurrency(allRoomsTotal)}
+                {totalItems(items)}
               </Typography>
             </ListItem>
           </List>

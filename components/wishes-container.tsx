@@ -1,11 +1,12 @@
 'use client'
 import { Item, Room, RoomProps, View } from '@/lib/types'
 import * as React from 'react';
-import { Container } from '@mui/material';
+import { Container, Stack, Toolbar, Typography } from '@mui/material';
 import Filter from '@/components/filter';
 import WishesList from './views/wishes-list';
 import WishesModule from './views/wishes-module';
 import RoomTotals from './room-totals';
+import { totalItems } from '@/lib/helpers/total-items';
 
 export default function Wishes({
   items, rooms,
@@ -64,7 +65,26 @@ export default function Wishes({
 
       <RoomTotals rooms={rooms} items={items} />
 
-      <Container maxWidth='md' sx={{ paddingY: '3rem' }}>
+      <Toolbar>
+        <Stack
+          direction='row'
+          alignItems='baseline'
+          justifyContent='space-between'
+          sx={{ width: '100%' }}
+        >
+          <Typography
+            variant='overline'
+            sx={{ color: 'text.secondary' }}
+            component='p'
+          >
+						Items
+            <Typography component='span' sx={{ ml: 1 }}>{filteredItems?.length}</Typography>
+          </Typography>
+          <Typography>{totalItems(filteredItems)}</Typography>
+        </Stack>
+      </Toolbar>
+
+      <Container maxWidth='md'>
         {(() => {
           switch (view) {
           case 'list':

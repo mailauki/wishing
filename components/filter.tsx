@@ -1,7 +1,7 @@
 'use client'
 import { Room, RoomProps, View } from '@/lib/types';
 import { ViewList, ViewModule, Done } from '@mui/icons-material';
-import { AppBar, Box, ToggleButton, Toolbar } from '@mui/material';
+import { AppBar, Box, ToggleButton, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
@@ -53,7 +53,6 @@ export default function Filter({
 		value: Room[]) => void),
 	rooms: RoomProps[] | null,
 }) {
-
   return (
     <AppBar
       position='sticky'
@@ -104,7 +103,18 @@ export default function Filter({
         </ToggleButtonGroup>
       </Toolbar>
 
-      <Toolbar>
+      <Toolbar
+        sx={{
+          overflowX: 'auto', // Ensures content can still be scrolled
+          // Hide scrollbar for Chrome, Safari, Opera, Edge
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          // Hide scrollbar for IE, Edge, Firefox
+          msOverflowStyle: 'none', // IE and Edge
+          scrollbarWidth: 'none', // Firefox
+        }}
+      >
         <StyledToggleButtonGroup
           value={selectedRooms}
           onChange={handleRooms}
@@ -121,7 +131,7 @@ export default function Filter({
               }}
             >
               {selectedRooms?.includes(room.name) && <Done sx={{ mr: 1 }} />}
-              {room.name}
+              <Typography variant='button' noWrap>{room.name}</Typography>
             </ToggleButton>
           ))}
         </StyledToggleButtonGroup>

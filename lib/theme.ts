@@ -92,9 +92,16 @@ const theme = createTheme({
           borderRadius: 0,
           variants: [
             {
-              props: { color: 'default' },
+              props: { color: 'default', elevation: 1 },
               style: {
                 backgroundColor: 'var(--surface)',
+                boxShadow: 'none'
+              }
+            },
+            {
+              props: { color: 'default', elevation: 0 },
+              style: {
+                backgroundColor: 'var(--surface-container-lowest)',
                 boxShadow: 'none'
               }
             }

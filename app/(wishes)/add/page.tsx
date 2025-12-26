@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
-import AddItemForm from './add-item-form';
 import { createClient } from '@/lib/supabase/server';
+import AddItemForm from '@/components/forms/add-item-form';
 
 export default async function AddItem() {
   const supabase = await createClient()
@@ -12,7 +12,7 @@ export default async function AddItem() {
   const { data: rooms } = await supabase.from('rooms').select('name')
 	
   return (
-    <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>
+    <Container maxWidth='xs'>
       <AddItemForm user={user} rooms={rooms} />
     </Container>
   )

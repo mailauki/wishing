@@ -1,10 +1,15 @@
 'use client'
-import { RoomProps } from '@/lib/types';
+import { Room, RoomProps } from '@/lib/types';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import * as React from 'react';
 
-export default function RoomSelect({ rooms }: {rooms: RoomProps[] | null}) {
-  const [room, setRoom] = React.useState('');
+export default function RoomSelect({
+  rooms, selected,
+}: {
+	rooms: RoomProps[] | null,
+	selected?: Room,
+}) {
+  const [room, setRoom] = React.useState(selected||'');
 
   const handleChange = (event: SelectChangeEvent) => {
     setRoom(event.target.value as string);
