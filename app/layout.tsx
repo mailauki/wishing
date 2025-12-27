@@ -25,12 +25,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang='en' className={roboto.variable}>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <Paper component='body' sx={{ display: 'flex', height: '100vh' }}>
+          <Paper
+            component='body'
+            sx={{
+              display: 'flex',
+              height: '100vh',
+              minHeight: '100vh',
+              overflow: 'hidden'
+            }}
+          >
             <Main>
               {children}
             </Main>

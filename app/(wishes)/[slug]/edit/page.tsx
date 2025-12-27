@@ -37,7 +37,7 @@ export default async function Edit({
               startIcon={<ChevronLeft />}
               sx={{ borderRadius: 6, px: 2.5 }}
             >
-					Back
+              {item.name}
             </Button>
           )}
         </Toolbar>

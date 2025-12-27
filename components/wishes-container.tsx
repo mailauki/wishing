@@ -1,12 +1,13 @@
 'use client'
 import { Item, Room, RoomProps, View } from '@/lib/types'
 import * as React from 'react';
-import { Container, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Stack, Toolbar, Typography } from '@mui/material';
 import Filter from '@/components/filter';
 import WishesList from './views/wishes-list';
 import WishesModule from './views/wishes-module';
 import RoomTotals from './room-totals';
 import { totalItems } from '@/lib/helpers/total-items';
+import ViewToggle from './view-toggle';
 
 export default function Wishes({
   items, rooms,
@@ -51,13 +52,27 @@ export default function Wishes({
     )
   ))
 
-  
-
   return (
     <>
+      <AppBar
+        component='div'
+        position='fixed'
+        color='transparent'
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          width: 'fit-content',
+          display: { xs: 'none', sm: 'flex' }
+        }}
+      >
+        <Toolbar>
+          <ViewToggle
+            view={view}
+            handleView={handleView}
+          />
+        </Toolbar>
+      </AppBar>
+
       <Filter
-        view={view}
-        handleView={handleView}
         selectedRooms={selectedRooms}
         handleRooms={handleRooms}
         rooms={rooms}

@@ -1,7 +1,7 @@
 'use client'
-import { Room, RoomProps, View } from '@/lib/types';
-import { ViewList, ViewModule, Done } from '@mui/icons-material';
-import { AppBar, Box, ToggleButton, Toolbar, Typography } from '@mui/material';
+import { Room, RoomProps } from '@/lib/types';
+import { Done } from '@mui/icons-material';
+import { AppBar, ToggleButton, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
@@ -41,12 +41,8 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(() => ({
 
 
 export default function Filter({
-  view, handleView, selectedRooms, handleRooms, rooms,
+  selectedRooms, handleRooms, rooms,
 }: {
-	view: View,
-	handleView: ((
-		event: React.MouseEvent<HTMLElement, MouseEvent>,
-		value: View) => void),
 	selectedRooms: Room[] | null,
 	handleRooms: ((
 		event: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -55,53 +51,10 @@ export default function Filter({
 }) {
   return (
     <AppBar
+      component='div'
       position='sticky'
-      color='inherit'
       elevation={0}
-      sx={{ backgroundColor: 'var(--surface-container-lowest)'}}
     >
-      <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
-          {/* <Button
-            color='inherit'
-            startIcon={<FilterAlt />}
-            endIcon={<ArrowDropDown sx={{ ml: 1.5 }} />}
-            sx={{ borderRadius: 6, px: 2.5 }}
-          >
-						Filter
-          </Button> */}
-        </Box>
-        <ToggleButtonGroup
-          exclusive
-          value={view}
-          onChange={handleView}
-        >
-          <ToggleButton
-            value='list'
-            aria-label='list'
-            sx={{
-              height: 40,
-              borderTopLeftRadius: 20,
-              borderBottomLeftRadius: 20,
-              paddingInlineStart: 1.5,
-            }}
-          >
-            <ViewList />
-          </ToggleButton>
-          <ToggleButton
-            value='module'
-            aria-label='module'
-            sx={{
-              height: 40,
-              borderTopRightRadius: 20,
-              borderBottomRightRadius: 20,
-              paddingInlineEnd: 1.5,
-            }}
-          >
-            <ViewModule />
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Toolbar>
 
       <Toolbar
         sx={{

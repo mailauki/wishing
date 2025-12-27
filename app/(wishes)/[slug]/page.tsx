@@ -1,7 +1,9 @@
 import { AppBar, Button, Container, Toolbar } from '@mui/material'
-import ItemDetails from '../../../components/item-details'
+import ItemDetails from '@/components/item-details'
 import { createClient } from '@/lib/supabase/server'
 import { ChevronLeft } from '@mui/icons-material'
+import * as React from 'react'
+import ItemMenu from '@/components/item-menu'
 
 export default async function Item({
   params,
@@ -27,7 +29,7 @@ export default async function Item({
         position='sticky'
         elevation={0}
       >
-        <Toolbar>
+        <Toolbar sx={{ width: '100%' }}>
           {slug && (
             <Button
               href='/'
@@ -35,9 +37,10 @@ export default async function Item({
               startIcon={<ChevronLeft />}
               sx={{ borderRadius: 6, px: 2.5 }}
             >
-					Back
+							Back
             </Button>
           )}
+          <ItemMenu item={item} />
         </Toolbar>
       </AppBar>
       <Container maxWidth='md'>

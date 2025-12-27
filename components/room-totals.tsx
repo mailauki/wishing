@@ -18,7 +18,7 @@ export default function RoomTotals({
   ))
 
   return (
-    <Container maxWidth='xs' sx={{ mx: 0 }}>
+    <Container maxWidth='sm' sx={{ mx: 0 }}>
       <Accordion
         variant='flat'
         disableGutters
