@@ -1,13 +1,13 @@
 'use client'
-import { rooms } from '@/lib/data';
-import { Room } from '@/lib/types';
-import { Done } from '@mui/icons-material';
-import { ToggleButton, Toolbar, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { rooms } from '@/lib/data'
+import { Room } from '@/lib/types'
+import { Done } from '@mui/icons-material'
+import { ToggleButton, Toolbar, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
-} from '@mui/material/ToggleButtonGroup';
-import * as React from 'react';
+} from '@mui/material/ToggleButtonGroup'
+import * as React from 'react'
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(() => ({
   gap: '0.25rem',
@@ -37,15 +37,17 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(() => ({
       borderRadius: 12,
       backgroundColor: 'var(--surface-container-high)',
     },
-}));
+}))
 
 export default function RoomFilter({
-  selectedRooms, handleRooms,
+  selectedRooms,
+  handleRooms,
 }: {
-	selectedRooms: Room[] | null,
-	handleRooms: ((
-		event: React.MouseEvent<HTMLElement, MouseEvent>,
-		value: Room[]) => void),
+  selectedRooms: Room[] | null
+  handleRooms: (
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    value: Room[],
+  ) => void
 }) {
   return (
     <Toolbar
@@ -77,7 +79,9 @@ export default function RoomFilter({
             }}
           >
             {selectedRooms?.includes(room) && <Done sx={{ mr: 1 }} />}
-            <Typography variant='button' noWrap>{room}</Typography>
+            <Typography variant='button' noWrap>
+              {room}
+            </Typography>
           </ToggleButton>
         ))}
       </StyledToggleButtonGroup>

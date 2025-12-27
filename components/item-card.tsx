@@ -1,6 +1,14 @@
-import { formatCurrencyShort } from '@/lib/helpers/format-currency';
-import { Item } from '@/lib/types';
-import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Chip, Typography } from '@mui/material';
+import { formatCurrencyShort } from '@/lib/helpers/format-currency'
+import { Item } from '@/lib/types'
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Chip,
+  Typography,
+} from '@mui/material'
 
 export default function ItemCard({ item }: { item: Item }) {
   return (
@@ -35,7 +43,7 @@ export default function ItemCard({ item }: { item: Item }) {
           subheader={item.brand}
           action={
             <Chip
-              sx={{ display: { xs: 'none', sm: 'flex' }}}
+              sx={{ display: { xs: 'none', sm: 'flex' } }}
               label={item.room_name}
             />
           }

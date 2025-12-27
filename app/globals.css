@@ -1,59 +1,59 @@
 @import "tailwindcss";
 
 :root {
-	--primary: #8D4F28;
-	--on-primary: #FFFFFF;
-	--primary-container: #FFAE7F;
-	--on-primary-container: #673C22;
-	--secondary: #765948;
-	--on-secondary: #FFFFFF;
-	--secondary-container: #FDD5BF;
-	--on-secondary-container: #5C4131;
-	--tertiary: #636133;
-	--on-tertiary: #FFFFFF;
-	--tertiary-container: #E6E2A9;
-	--on-tertiary-container: #494923;
-  --background: #FFFFFF;
-	--on-background: #171717;
-	--surface: #FFF8F5;
-	--on-surface: #221A15;
-	--surface-variant: #F0DFD7;
-	--on-surface-variant: #52443C;
-	--outline: #85746B;
-	--outline-variant: #D7C2B8;
-	--surface-container-lowest: #FFFFFF;
-	--surface-container-low: #FFF1EB;
-	--surface-container: #FCEAE2;
-	--surface-container-high: #F6E5DD;
-	--surface-container-highest: #F0DFD7;
+  --primary: #8d4f28;
+  --on-primary: #ffffff;
+  --primary-container: #ffae7f;
+  --on-primary-container: #673c22;
+  --secondary: #765948;
+  --on-secondary: #ffffff;
+  --secondary-container: #fdd5bf;
+  --on-secondary-container: #5c4131;
+  --tertiary: #636133;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #e6e2a9;
+  --on-tertiary-container: #494923;
+  --background: #ffffff;
+  --on-background: #171717;
+  --surface: #fff8f5;
+  --on-surface: #221a15;
+  --surface-variant: #f0dfd7;
+  --on-surface-variant: #52443c;
+  --outline: #85746b;
+  --outline-variant: #d7c2b8;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fff1eb;
+  --surface-container: #fceae2;
+  --surface-container-high: #f6e5dd;
+  --surface-container-highest: #f0dfd7;
 }
 
 @theme inline {
-	--color-primary: var(--primary);
-	--color-on-primary: var(--on-primary);
-	--color-primary-container: var(--primary-container);
-	--color-on-primary-container: var(--on-primary-container);
-	--color-secondary: var(--secondary);
-	--color-on-secondary: var(--on-secondary);
-	--color-secondary-container: var(--secondary-container);
-	--color-on-secondary-container: var(-);
-	--color-tertiary: var(--tertiary);
-	--color-on-tertiary: var(--on-tertiary);
-	--color-tertiary-container: var(--tertiary-container);
-	--color-on-tertiary-container: var(--on-tertiary-container);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(-);
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
   --color-background: var(--background);
-	--color-on-background: var(--on-background);
-	--color-surface: var(--surface);
-	--color-on-surface: var(--on-surface);
-	--color-surface-variant: var(--surface-variant);
-	--color-on-surface-variant: var(--on-surface-variant);
-	--color-outline: var(--outline);
-	--color-outline-variant: var(--outline-variant);
-	--color-surface-container-lowest: var(--surface-container-lowest);
-	--color-surface-container-low: var(--surface-container-low);
-	--color-surface-container: var(--surface-container);
-	--color-surface-container-high: var(--surface-container-high);
-	--color-surface-container-highest: var(--surface-container-highest);
+  --color-on-background: var(--on-background);
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on-surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -61,31 +61,31 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-	--primary: #FFB68C;
-	--on-primary: #532200;
-	--primary-container: #6F3812;
-	--on-primary-container: #FFDBC9;
-	--secondary: #E5BFAA;
-	--on-secondary: #432B1D;
-	--secondary-container: #5C4131;
-	--on-secondary-container: #FFDBC9;
-	--tertiary: #CDC991;
-	--on-tertiary: #333208;
-	--tertiary-container: #4A481D;
-	--on-tertiary-container: #E9E5AB;
-  --background: #0A0A0A;
-	--on-background: #EDEDED;
-	--surface: #1A120D;
-	--on-surface: #F0DFD7;
-	--surface-variant: #3D332D;
-	--on-surface-variant: #D7C2B8;
-	--outline: #7F7667;
-	--outline-variant: #52443C;
-	--surface-container-lowest: #140D08;
-	--surface-container-low: #221A15;
-	--surface-container: #271E19;
-	--surface-container-high: #312823;
-	--surface-container-highest: #3D332D;
+    --primary: #ffb68c;
+    --on-primary: #532200;
+    --primary-container: #6f3812;
+    --on-primary-container: #ffdbc9;
+    --secondary: #e5bfaa;
+    --on-secondary: #432b1d;
+    --secondary-container: #5c4131;
+    --on-secondary-container: #ffdbc9;
+    --tertiary: #cdc991;
+    --on-tertiary: #333208;
+    --tertiary-container: #4a481d;
+    --on-tertiary-container: #e9e5ab;
+    --background: #0a0a0a;
+    --on-background: #ededed;
+    --surface: #1a120d;
+    --on-surface: #f0dfd7;
+    --surface-variant: #3d332d;
+    --on-surface-variant: #d7c2b8;
+    --outline: #7f7667;
+    --outline-variant: #52443c;
+    --surface-container-lowest: #140d08;
+    --surface-container-low: #221a15;
+    --surface-container: #271e19;
+    --surface-container-high: #312823;
+    --surface-container-highest: #3d332d;
   }
 }
 
@@ -96,12 +96,14 @@ body {
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-html::-webkit-scrollbar, .hide-scrollbar::-webkit-scrollbar {
+html::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-html, .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+html,
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

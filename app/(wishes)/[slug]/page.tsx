@@ -25,10 +25,7 @@ export default async function Item({
 
   return (
     <>
-      <AppBar
-        position='sticky'
-        elevation={0}
-      >
+      <AppBar position='sticky' elevation={0}>
         <Toolbar sx={{ width: '100%' }}>
           {slug && (
             <Button
@@ -37,7 +34,7 @@ export default async function Item({
               startIcon={<ChevronLeft />}
               sx={{ borderRadius: 6, px: 2.5 }}
             >
-							Back
+              Back
             </Button>
           )}
           <ItemMenu item={item} />

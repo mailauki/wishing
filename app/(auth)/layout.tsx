@@ -1,10 +1,10 @@
-import { Container, Stack } from '@mui/material';
-import * as React from 'react';
+import { Container, Stack } from '@mui/material'
+import * as React from 'react'
 
 export default function AuthLayout({
   children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <Container maxWidth='xs' sx={{ paddingY: '3rem' }}>

@@ -1,5 +1,12 @@
 'use client'
-import { Alert, AlertTitle, Button, Stack, TextField, Typography } from '@mui/material'
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { type User } from '@supabase/supabase-js'
 import { useActionState } from 'react'
 import { Item } from '@/lib/types'
@@ -11,28 +18,33 @@ const initialState = {
 }
 
 export default function EditItemForm({
-  item, user,
+  item,
+  user,
 }: {
-	item: Item,
-	user: User | null,
+  item: Item
+  user: User | null
 }) {
   const [state, formAction, pending] = useActionState(editItem, initialState)
 
   return (
     <>
       <Stack spacing={2}>
-        <Typography variant='h4' component='h1'>Edit wish</Typography>
-        <Typography variant='subtitle1'>Change any item details to update it</Typography>
+        <Typography variant='h4' component='h1'>
+          Edit wish
+        </Typography>
+        <Typography variant='subtitle1'>
+          Change any item details to update it
+        </Typography>
 
         <Alert
           severity='error'
-          sx={{ display: state.message !== '' ? 'flex' : 'none'}}
+          sx={{ display: state.message !== '' ? 'flex' : 'none' }}
         >
           <AlertTitle>Error</AlertTitle>
           {state.message}
         </Alert>
 
-        <form className='w-full max-w-sm flex flex-col gap-4'>
+        <form className='flex w-full max-w-sm flex-col gap-4'>
           <TextField
             label='Id'
             id='id'
@@ -123,7 +135,15 @@ export default function EditItemForm({
             required
           />
 
-          <Button formAction={formAction} variant='contained' size='large' fullWidth disabled={pending}>{pending ? 'Loading...' : 'Update item'}</Button>
+          <Button
+            formAction={formAction}
+            variant='contained'
+            size='large'
+            fullWidth
+            disabled={pending}
+          >
+            {pending ? 'Loading...' : 'Update item'}
+          </Button>
         </form>
       </Stack>
     </>

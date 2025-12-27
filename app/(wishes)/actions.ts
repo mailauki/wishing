@@ -20,7 +20,7 @@ export async function addItem(_initialState: unknown, formData: FormData) {
     color: formData.get('color'),
     description: formData.get('description'),
     notes: formData.get('notes'),
-    slug: slugify(formData.get('name')!.toString().toLowerCase())
+    slug: slugify(formData.get('name')!.toString().toLowerCase()),
   }
 
   console.log(data)
@@ -56,10 +56,7 @@ export async function editItem(_initialState: unknown, formData: FormData) {
 
   console.log(data)
 
-  const { error } = await supabase
-    .from('items')
-    .update(data)
-    .eq('id', data.id)
+  const { error } = await supabase.from('items').update(data).eq('id', data.id)
 
   if (error) {
     console.log(error)

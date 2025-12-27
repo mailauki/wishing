@@ -74,12 +74,16 @@ export default function AccountForm({ user }: { user: User | null }) {
 
   return (
     <Stack spacing={2}>
-      <Typography variant='h4' component='h1'>Account Settings</Typography>
+      <Typography variant='h4' component='h1'>
+        Account Settings
+      </Typography>
       <Stack direction='row' justifyContent='space-between'>
         <Typography variant='subtitle1'>My Profile</Typography>
         <div>
           <form action='/signout' method='post'>
-            <Button type='submit' variant='outlined'>Logout</Button>
+            <Button type='submit' variant='outlined'>
+              Logout
+            </Button>
           </form>
         </div>
       </Stack>
@@ -94,7 +98,7 @@ export default function AccountForm({ user }: { user: User | null }) {
       />
 
       <TextField
-        id='email' 
+        id='email'
         name='email'
         type='text'
         label='Email'
@@ -105,7 +109,7 @@ export default function AccountForm({ user }: { user: User | null }) {
         id='fullName'
         name='fullname'
         type='text'
-        label='Full Name' 
+        label='Full Name'
         value={fullname || ''}
         onChange={(event) => setFullname(event.target.value)}
       />
@@ -113,7 +117,7 @@ export default function AccountForm({ user }: { user: User | null }) {
         id='username'
         name='username'
         type='text'
-        label='Username' 
+        label='Username'
         value={username || ''}
         onChange={(e) => setUsername(e.target.value)}
       />
@@ -131,8 +135,13 @@ export default function AccountForm({ user }: { user: User | null }) {
 
       <Stack spacing={2}>
         <Stack spacing={1}>
-          <Typography variant='h6' component='h3'>Remove Account</Typography>
-          <Typography>Permanently delete your account and remove all saved items associated with it</Typography>
+          <Typography variant='h6' component='h3'>
+            Remove Account
+          </Typography>
+          <Typography>
+            Permanently delete your account and remove all saved items
+            associated with it
+          </Typography>
         </Stack>
         <Stack direction='row' spacing={2}>
           <Button color='error'>Delete Account</Button>

@@ -1,3 +1,9 @@
-import { Room } from './types';
+import { Room } from './types'
 
-export const rooms = ['Bedroom','Kitchen','Living room','Bathroom','Office'] as Room[]
+export const rooms = [
+  'Bedroom',
+  'Kitchen',
+  'Living room',
+  'Bathroom',
+  'Office',
+] as Room[]

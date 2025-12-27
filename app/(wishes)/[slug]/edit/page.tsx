@@ -10,23 +10,20 @@ export default async function Edit({
 }) {
   const { slug } = await params
   const supabase = await createClient()
-	
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-	
+
   const { data: item } = await supabase
     .from('items')
     .select('*')
     .match({ slug: slug, user_id: user?.id })
     .single()
-	
+
   return (
     <>
-      <AppBar
-        position='sticky'
-        elevation={0}
-      >
+      <AppBar position='sticky' elevation={0}>
         <Toolbar>
           {slug && (
             <Button

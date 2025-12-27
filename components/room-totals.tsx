@@ -2,42 +2,43 @@ import { rooms } from '@/lib/data'
 import { totalItems } from '@/lib/helpers/total-items'
 import { Item, RoomProps } from '@/lib/types'
 import { ExpandMore } from '@mui/icons-material'
-import { Accordion, AccordionDetails, AccordionSummary, Container, List, ListItem, ListItemText, Typography } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 
 export default function RoomTotals({ items }: { items: Item[] }) {
-  const roomTotals = rooms.map((room) => (
-    Object.assign({
-      name: room, 
-      total: 
-				totalItems(items.filter((item) => item.room_name === room))
-    }) as RoomProps
-  ))
+  const roomTotals = rooms.map(
+    (room) =>
+      Object.assign({
+        name: room,
+        total: totalItems(items.filter((item) => item.room_name === room)),
+      }) as RoomProps,
+  )
 
   return (
     <Container maxWidth='xs' sx={{ py: 1, mx: 0 }}>
-      <Accordion
-        variant='flat'
-        disableGutters
-      >
+      <Accordion variant='flat' disableGutters>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography component='span'>Room Totals</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <List disablePadding>
             {roomTotals.map((room) => (
-              <ListItem
-                key={room.name}
-                disableGutters
-              >
+              <ListItem key={room.name} disableGutters>
                 <ListItemText
                   disableTypography
                   primary={
                     <Typography variant='overline'>{room.name}</Typography>
                   }
                 />
-                <Typography>
-                  {room.total}
-                </Typography>
+                <Typography>{room.total}</Typography>
               </ListItem>
             ))}
             <ListItem disableGutters>
@@ -49,14 +50,11 @@ export default function RoomTotals({ items }: { items: Item[] }) {
                     color='secondary'
                     fontWeight={500}
                   >
-										All Rooms
+                    All Rooms
                   </Typography>
                 }
               />
-              <Typography
-                color='secondary'
-                fontWeight={500}
-              >
+              <Typography color='secondary' fontWeight={500}>
                 {totalItems(items)}
               </Typography>
             </ListItem>

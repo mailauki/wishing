@@ -1,5 +1,12 @@
 'use client'
-import { Alert, AlertTitle, Button, Stack, TextField, Typography } from '@mui/material'
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { type User } from '@supabase/supabase-js'
 import { useActionState } from 'react'
 import { addItem } from '@/app/(wishes)/actions'
@@ -15,18 +22,22 @@ export default function AddItemForm({ user }: { user: User | null }) {
   return (
     <>
       <Stack spacing={2}>
-        <Typography variant='h4' component='h1'>Add wish</Typography>
-        <Typography variant='subtitle1'>Enter item details to add it to your wishes list</Typography>
+        <Typography variant='h4' component='h1'>
+          Add wish
+        </Typography>
+        <Typography variant='subtitle1'>
+          Enter item details to add it to your wishes list
+        </Typography>
 
         <Alert
           severity='error'
-          sx={{ display: state.message !== '' ? 'flex' : 'none'}}
+          sx={{ display: state.message !== '' ? 'flex' : 'none' }}
         >
           <AlertTitle>Error</AlertTitle>
           {state.message}
         </Alert>
 
-        <form className='w-full max-w-sm flex flex-col gap-4'>
+        <form className='flex w-full max-w-sm flex-col gap-4'>
           <TextField
             label='User'
             id='user'
@@ -88,7 +99,15 @@ export default function AddItemForm({ user }: { user: User | null }) {
             rows={4}
           />
 
-          <Button formAction={formAction} variant='contained' size='large' fullWidth disabled={pending}>{pending ? 'Loading...' : 'Add item'}</Button>
+          <Button
+            formAction={formAction}
+            variant='contained'
+            size='large'
+            fullWidth
+            disabled={pending}
+          >
+            {pending ? 'Loading...' : 'Add item'}
+          </Button>
         </form>
       </Stack>
     </>

@@ -1,9 +1,9 @@
 'use client'
-import * as React from 'react';
-import { createClient } from '@/lib/supabase/client';
-import Avatar from '@mui/material/Avatar';
-import ButtonBase from '@mui/material/ButtonBase';
-import { Stack, Tooltip } from '@mui/material';
+import * as React from 'react'
+import { createClient } from '@/lib/supabase/client'
+import Avatar from '@mui/material/Avatar'
+import ButtonBase from '@mui/material/ButtonBase'
+import { Stack, Tooltip } from '@mui/material'
 
 export default function UploadAvatar({
   uid,
@@ -14,14 +14,16 @@ export default function UploadAvatar({
   url: string | null
   onUpload: (url: string) => void
 }) {
-  const supabase = createClient();
+  const supabase = createClient()
   const [avatarUrl, setAvatarUrl] = React.useState<string | null>(url)
   const [uploading, setUploading] = React.useState(false)
 
   React.useEffect(() => {
     async function downloadImage(path: string) {
       try {
-        const { data, error } = await supabase.storage.from('avatars').download(path)
+        const { data, error } = await supabase.storage
+          .from('avatars')
+          .download(path)
         if (error) {
           throw error
         }
@@ -36,7 +38,9 @@ export default function UploadAvatar({
     if (url) downloadImage(url)
   }, [url, supabase])
 
-  const uploadAvatar: React.ChangeEventHandler<HTMLInputElement> = async (event) => {
+  const uploadAvatar: React.ChangeEventHandler<HTMLInputElement> = async (
+    event,
+  ) => {
     try {
       setUploading(true)
 
@@ -48,7 +52,9 @@ export default function UploadAvatar({
       const fileExt = file.name.split('.').pop()
       const filePath = `${uid}/${Math.random()}.${fileExt}`
 
-      const { error: uploadError } = await supabase.storage.from('avatars').upload(filePath, file)
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, file)
 
       if (uploadError) {
         throw uploadError
@@ -64,7 +70,12 @@ export default function UploadAvatar({
   }
 
   return (
-    <Stack direction='row' alignItems='center' justifyContent='center' sx={{ paddingBottom: '2rem' }}>
+    <Stack
+      direction='row'
+      alignItems='center'
+      justifyContent='center'
+      sx={{ paddingBottom: '2rem' }}
+    >
       <Tooltip title='Upload an image to use as your profile avatar'>
         <ButtonBase
           component='label'
@@ -105,5 +116,5 @@ export default function UploadAvatar({
         </ButtonBase>
       </Tooltip>
     </Stack>
-  );
+  )
 }

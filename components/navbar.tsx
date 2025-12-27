@@ -1,17 +1,40 @@
 'use client'
-import { AccountCircle, Add, HomeFilled, Menu, MenuOpen } from '@mui/icons-material';
-import { AppBar, Divider, Drawer as MuiDrawer, IconButton, List, ListItemIcon, ListItemText, Toolbar, Stack, Typography, ListItem, ListItemButton, Button, Fab, Box, Link } from '@mui/material';
-import { CSSObject, styled, Theme } from '@mui/material/styles';
-import { User } from '@supabase/supabase-js';
-import { usePathname } from 'next/navigation';
-import * as React from 'react';
+import {
+  AccountCircle,
+  Add,
+  HomeFilled,
+  Menu,
+  MenuOpen,
+} from '@mui/icons-material'
+import {
+  AppBar,
+  Divider,
+  Drawer as MuiDrawer,
+  IconButton,
+  List,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Stack,
+  Typography,
+  ListItem,
+  ListItemButton,
+  Button,
+  Fab,
+  Box,
+  Link,
+} from '@mui/material'
+import { CSSObject, styled, Theme } from '@mui/material/styles'
+import { User } from '@supabase/supabase-js'
+import { usePathname } from 'next/navigation'
+import * as React from 'react'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   [theme.breakpoints.down('sm')]: {
-    width: '100%'
+    width: '100%',
   },
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -19,8 +42,8 @@ const openedMixin = (theme: Theme): CSSObject => ({
   }),
   overflowX: 'hidden',
   borderColor: 'transparent',
-  backgroundColor: 'var(--surface)'
-});
+  backgroundColor: 'var(--surface)',
+})
 
 const closedMixin = (theme: Theme): CSSObject => ({
   transition: theme.transitions.create('width', {
@@ -33,42 +56,46 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: `calc(${theme.spacing(0)} + 1px)`,
   },
   borderColor: 'transparent',
-  backgroundColor: 'var(--surface)'
-});
+  backgroundColor: 'var(--surface)',
+})
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    variants: [
-      {
-        props: ({ open }) => open,
-        style: {
-          ...openedMixin(theme),
-          '& .MuiDrawer-paper': openedMixin(theme),
-        },
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  variants: [
+    {
+      props: ({ open }) => open,
+      style: {
+        ...openedMixin(theme),
+        '& .MuiDrawer-paper': openedMixin(theme),
       },
-      {
-        props: ({ open }) => !open,
-        style: {
-          ...closedMixin(theme),
-          '& .MuiDrawer-paper': closedMixin(theme),
-        },
+    },
+    {
+      props: ({ open }) => !open,
+      style: {
+        ...closedMixin(theme),
+        '& .MuiDrawer-paper': closedMixin(theme),
       },
-    ],
-  }),
-);
+    },
+  ],
+}))
 
 const NavItem = ({
-  text, icon, link, open, pathname,
+  text,
+  icon,
+  link,
+  open,
+  pathname,
 }: {
-	text: string,
-	icon: React.ReactNode,
-	link: string,
-	open: boolean,
-	pathname: string,
+  text: string
+  icon: React.ReactNode
+  link: string
+  open: boolean
+  pathname: string
 }) => {
   return (
     <ListItem
@@ -76,7 +103,7 @@ const NavItem = ({
       sx={{
         display: 'block',
         height: 68,
-        py: open ? 1 : 2
+        py: open ? 1 : 2,
       }}
     >
       <ListItemButton
@@ -88,11 +115,13 @@ const NavItem = ({
             py: open ? 1 : 0,
             borderRadius: 6,
           },
-          open ? {
-            justifyContent: 'initial',
-          } : {
-            justifyContent: 'center',
-          },
+          open
+            ? {
+                justifyContent: 'initial',
+              }
+            : {
+                justifyContent: 'center',
+              },
         ]}
         selected={pathname == link}
       >
@@ -109,23 +138,15 @@ const NavItem = ({
         </ListItemIcon>
         <ListItemText
           primary={text}
-          sx={[
-            open ? { opacity: 1 } : { opacity: 0 },
-          ]}
+          sx={[open ? { opacity: 1 } : { opacity: 0 }]}
         />
       </ListItemButton>
       <Stack
         direction='row'
         justifyContent='center'
-        sx={[
-          { pt: 0.15 },
-          open ? { opacity: 0 } : { opacity: 1 },
-        ]}
+        sx={[{ pt: 0.15 }, open ? { opacity: 0 } : { opacity: 1 }]}
       >
-        <Typography
-          variant='caption'
-          sx={{ color: 'text.secondary' }}
-        >
+        <Typography variant='caption' sx={{ color: 'text.secondary' }}>
           {text}
         </Typography>
       </Stack>
@@ -134,10 +155,10 @@ const NavItem = ({
 }
 
 export default function Navbar({ user }: { user: User }) {
-  const [open, setOpen] = React.useState(false);
-  const pathname = usePathname();
+  const [open, setOpen] = React.useState(false)
+  const pathname = usePathname()
 
-  if(!user) {
+  if (!user) {
     return (
       <>
         <AppBar
@@ -164,7 +185,7 @@ export default function Navbar({ user }: { user: User }) {
                 width: 'fit-content',
               }}
             >
-							Wishing
+              Wishing
             </Link>
           </Toolbar>
         </AppBar>
@@ -181,10 +202,7 @@ export default function Navbar({ user }: { user: User }) {
         }}
       >
         <Toolbar sx={{ mx: 0.5 }}>
-          <IconButton 
-            onClick={() => setOpen(!open)}
-            color='inherit'
-          >
+          <IconButton onClick={() => setOpen(!open)} color='inherit'>
             {open ? <MenuOpen /> : <Menu />}
           </IconButton>
           <Link
@@ -201,15 +219,12 @@ export default function Navbar({ user }: { user: User }) {
               width: 'fit-content',
             }}
           >
-							Wishing
+            Wishing
           </Link>
         </Toolbar>
       </AppBar>
 
-      <Drawer
-        variant='permanent'
-        open={open}
-      >
+      <Drawer variant='permanent' open={open}>
         <Toolbar />
 
         <List disablePadding sx={{ pt: 2 }}>
@@ -224,7 +239,7 @@ export default function Navbar({ user }: { user: User }) {
               borderRadius: 4,
               ml: 2,
               px: 2.5,
-              opacity: { xs: 0, sm: 1 }
+              opacity: { xs: 0, sm: 1 },
             }}
           >
             <Add />
@@ -234,11 +249,11 @@ export default function Navbar({ user }: { user: User }) {
                 textTransform='initial'
                 sx={{ px: 2.5 }}
               >
-								Add item
+                Add item
               </Typography>
             )}
           </Button>
-					
+
           <Divider sx={{ my: 2, opacity: 0 }} />
 
           <NavItem
@@ -259,7 +274,8 @@ export default function Navbar({ user }: { user: User }) {
       </Drawer>
       <Box
         position='absolute'
-        right={0} bottom={0}
+        right={0}
+        bottom={0}
         sx={{ px: 4, py: 14, opacity: { xs: 1, sm: 0 } }}
       >
         {pathname == '/' && (

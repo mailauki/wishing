@@ -1,19 +1,21 @@
 'use client'
-import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material'
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import { Item } from '@/lib/types'
 import ItemRow from '../item-row'
 import { formatCurrency } from '@/lib/helpers/format-currency'
 
 export default function WishesList({ items }: { items: Item[] }) {
-  if(items.every((item) => item.image == null)) {
+  if (items.every((item) => item.image == null)) {
     return (
       <List disablePadding>
         {items.map((item) => (
-          <ListItem
-            key={item.id}
-            disableGutters
-            sx={{ py: 0.25 }}
-          >
+          <ListItem key={item.id} disableGutters sx={{ py: 0.25 }}>
             <ListItemButton
               sx={{
                 borderRadius: 2,
@@ -39,11 +41,7 @@ export default function WishesList({ items }: { items: Item[] }) {
   return (
     <List disablePadding>
       {items.map((item) => (
-        <ListItem
-          key={item.id}
-          disableGutters
-          sx={{ py: 0.25 }}
-        >
+        <ListItem key={item.id} disableGutters sx={{ py: 0.25 }}>
           <ItemRow item={item} />
         </ListItem>
       ))}

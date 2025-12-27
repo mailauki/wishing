@@ -1,24 +1,24 @@
-'use client';
-import { createTheme } from '@mui/material/styles';
+'use client'
+import { createTheme } from '@mui/material/styles'
 
 declare module '@mui/material/styles' {
   interface Palette {
-    tertiary: Palette['primary'];
+    tertiary: Palette['primary']
   }
 
   interface PaletteOptions {
-    tertiary?: PaletteOptions['primary'];
+    tertiary?: PaletteOptions['primary']
   }
 }
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    filled: true;
+    filled: true
   }
 }
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
-    flat: true;
+    flat: true
   }
 }
 
@@ -33,23 +33,23 @@ const theme = createTheme({
           main: '#8D4F28',
         },
         secondary: {
-          main: '#765948'
+          main: '#765948',
         },
         tertiary: {
-          main: '#636133'
+          main: '#636133',
         },
       },
     },
     dark: {
       palette: {
         primary: {
-          main: '#FFB68C'
+          main: '#FFB68C',
         },
         secondary: {
-          main: '#E5BFAA'
+          main: '#E5BFAA',
         },
         tertiary: {
-          main: '#CDC991'
+          main: '#CDC991',
         },
       },
     },
@@ -95,24 +95,24 @@ const theme = createTheme({
               props: { color: 'default', elevation: 1 },
               style: {
                 backgroundColor: 'var(--surface)',
-                boxShadow: 'none'
-              }
+                boxShadow: 'none',
+              },
             },
             {
               props: { color: 'default', elevation: 0 },
               style: {
                 backgroundColor: 'var(--surface-container-lowest)',
-                boxShadow: 'none'
-              }
-            }
-          ]
+                boxShadow: 'none',
+              },
+            },
+          ],
         },
       },
       defaultProps: {
         position: 'fixed',
         color: 'default',
         elevation: 1,
-      }
+      },
     },
     MuiDrawer: {
       styleOverrides: {
@@ -177,10 +177,10 @@ const theme = createTheme({
       },
       defaultProps: {
         variant: 'flat',
-        elevation: 1
+        elevation: 1,
       },
     },
-  }
-});
+  },
+})
 
-export default theme;
+export default theme

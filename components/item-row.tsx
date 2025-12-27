@@ -1,7 +1,13 @@
-import { formatCurrencyShort } from '@/lib/helpers/format-currency';
-import { Item } from '@/lib/types';
-import { Category } from '@mui/icons-material';
-import { Avatar, ListItemAvatar, ListItemButton, ListItemText, Typography } from '@mui/material';
+import { formatCurrencyShort } from '@/lib/helpers/format-currency'
+import { Item } from '@/lib/types'
+import { Category } from '@mui/icons-material'
+import {
+  Avatar,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 
 export default function ItemRow({ item }: { item: Item }) {
   return (
@@ -20,11 +26,12 @@ export default function ItemRow({ item }: { item: Item }) {
             src={item.image}
             sx={{
               position: 'absolute',
-              left: 0, top: 0,
+              left: 0,
+              top: 0,
               height: '100%',
               width: 100,
               borderRadius: 2,
-              backgroundColor: 'var(--surface-container-highest)'
+              backgroundColor: 'var(--surface-container-highest)',
             }}
           >
             <Category />
@@ -37,9 +44,7 @@ export default function ItemRow({ item }: { item: Item }) {
         secondary={item.brand}
         sx={{ pl: item.image ? 0 : 12.5 }}
       />
-      <Typography sx={{ ml: 2 }}>
-        {formatCurrencyShort(item.price)}
-      </Typography>
+      <Typography sx={{ ml: 2 }}>{formatCurrencyShort(item.price)}</Typography>
     </ListItemButton>
   )
 }

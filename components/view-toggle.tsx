@@ -1,22 +1,20 @@
-import { View } from '@/lib/types';
-import { ViewList, ViewModule } from '@mui/icons-material';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { View } from '@/lib/types'
+import { ViewList, ViewModule } from '@mui/icons-material'
+import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import * as React from 'react'
 
 export default function ViewToggle({
-  view, handleView,
+  view,
+  handleView,
 }: {
-	view: View,
-	handleView: ((
-		event: React.MouseEvent<HTMLElement, MouseEvent>,
-		value: View) => void),
+  view: View
+  handleView: (
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    value: View,
+  ) => void
 }) {
   return (
-    <ToggleButtonGroup
-      exclusive
-      value={view}
-      onChange={handleView}
-    >
+    <ToggleButtonGroup exclusive value={view} onChange={handleView}>
       <ToggleButton
         value='list'
         aria-label='list'

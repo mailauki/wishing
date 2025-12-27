@@ -1,15 +1,24 @@
 import { formatCurrency } from '@/lib/helpers/format-currency'
 import { Item } from '@/lib/types'
 import { ArrowOutward } from '@mui/icons-material'
-import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, Chip, Divider, Stack, Typography } from '@mui/material'
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Chip,
+  Divider,
+  Stack,
+  Typography,
+} from '@mui/material'
 
 export default function ItemDetails({ item }: { item: Item }) {
-  if(!item) {
-    return (
-      <p>No item found</p>
-    )
+  if (!item) {
+    return <p>No item found</p>
   }
-	
+
   return (
     <Card
       sx={{
@@ -36,16 +45,22 @@ export default function ItemDetails({ item }: { item: Item }) {
             {item.description}
           </Typography>
         )}
-        {((item.description) && (item.color || item.notes)) && <Divider sx={{ my: 2 }} />}
+        {item.description && (item.color || item.notes) && (
+          <Divider sx={{ my: 2 }} />
+        )}
         {item.color && (
           <Stack direction='row' spacing={1}>
-            <Typography variant='body2' sx={{ color: 'text.secondary' }}>Color:</Typography>
+            <Typography variant='body2' sx={{ color: 'text.secondary' }}>
+              Color:
+            </Typography>
             <Typography>{item.color}</Typography>
           </Stack>
         )}
         {item.notes && (
           <Stack direction='row' spacing={1}>
-            <Typography variant='body2' sx={{ color: 'text.secondary' }}>Notes:</Typography>
+            <Typography variant='body2' sx={{ color: 'text.secondary' }}>
+              Notes:
+            </Typography>
             <Typography sx={{ whiteSpace: 'pre-line' }}>
               {item.notes}
             </Typography>
@@ -63,7 +78,7 @@ export default function ItemDetails({ item }: { item: Item }) {
           endIcon={<ArrowOutward />}
           sx={{ borderRadius: 6, px: 2.5 }}
         >
-						Go to Source
+          Go to Source
         </Button>
       </CardActions>
     </Card>

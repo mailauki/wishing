@@ -1,18 +1,18 @@
 'use client'
-import { Item } from '@/lib/types';
-import { Archive, Delete, Edit, MoreVert } from '@mui/icons-material';
-import { IconButton, ListItemIcon, Menu, MenuItem, Stack } from '@mui/material';
-import * as React from 'react';
+import { Item } from '@/lib/types'
+import { Archive, Delete, Edit, MoreVert } from '@mui/icons-material'
+import { IconButton, ListItemIcon, Menu, MenuItem, Stack } from '@mui/material'
+import * as React from 'react'
 
 export default function ItemMenu({ item }: { item: Item }) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
   return (
     <>
       <Stack direction='row' justifyContent='flex-end' flexGrow={1}>
@@ -29,8 +29,8 @@ export default function ItemMenu({ item }: { item: Item }) {
             variant: 'elevation',
             sx: {
               backgroundColor: 'var(--surface-container)',
-            }
-          }
+            },
+          },
         }}
       >
         <MenuItem
@@ -41,7 +41,7 @@ export default function ItemMenu({ item }: { item: Item }) {
           <ListItemIcon>
             <Edit fontSize='small' />
           </ListItemIcon>
-					Edit
+          Edit
         </MenuItem>
         <MenuItem
           onClick={handleClose}
@@ -50,7 +50,7 @@ export default function ItemMenu({ item }: { item: Item }) {
           <ListItemIcon>
             <Archive fontSize='small' />
           </ListItemIcon>
-					Archive
+          Archive
         </MenuItem>
         <MenuItem
           onClick={handleClose}
@@ -59,7 +59,7 @@ export default function ItemMenu({ item }: { item: Item }) {
           <ListItemIcon>
             <Delete fontSize='small' />
           </ListItemIcon>
-					Delete
+          Delete
         </MenuItem>
       </Menu>
     </>
