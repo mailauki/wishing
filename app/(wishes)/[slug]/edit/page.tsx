@@ -21,8 +21,6 @@ export default async function Edit({
     .match({ slug: slug, user_id: user?.id })
     .single()
 	
-  const { data: rooms } = await supabase.from('rooms').select('name')
-	
   return (
     <>
       <AppBar
@@ -43,7 +41,7 @@ export default async function Edit({
         </Toolbar>
       </AppBar>
       <Container maxWidth='xs'>
-        <EditItemForm item={item} user={user} rooms={rooms} />
+        <EditItemForm item={item} user={user} />
       </Container>
     </>
   )

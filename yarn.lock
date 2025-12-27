@@ -4637,6 +4637,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"slugify@npm:^1.6.6":
+  version: 1.6.6
+  resolution: "slugify@npm:1.6.6"
+  checksum: 10c0/e7e63f08f389a371d6228bc19d64ec84360bf0a538333446cc49dbbf3971751a6d180d2f31551188dd007a65ca771e69f574e0283290a7825a818e90b75ef44d
+  languageName: node
+  linkType: hard
+
 "source-map-js@npm:^1.0.2, source-map-js@npm:^1.2.1":
   version: 1.2.1
   resolution: "source-map-js@npm:1.2.1"
@@ -5196,6 +5203,7 @@ __metadata:
     next: "npm:16.0.10"
     react: "npm:19.2.1"
     react-dom: "npm:19.2.1"
+    slugify: "npm:^1.6.6"
     supabase: "npm:^2.67.1"
     tailwindcss: "npm:^4"
     typescript: "npm:^5"

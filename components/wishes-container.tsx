@@ -1,20 +1,15 @@
 'use client'
-import { Item, Room, RoomProps, View } from '@/lib/types'
+import { Item, Room, View } from '@/lib/types'
 import * as React from 'react';
 import { AppBar, Container, Stack, Toolbar, Typography } from '@mui/material';
-import Filter from '@/components/filter';
 import WishesList from './views/wishes-list';
 import WishesModule from './views/wishes-module';
 import RoomTotals from './room-totals';
 import { totalItems } from '@/lib/helpers/total-items';
 import ViewToggle from './view-toggle';
+import RoomFilter from '@/components/room-filter';
 
-export default function Wishes({
-  items, rooms,
-}: {
-	items: Item[] | null,
-	rooms: RoomProps[] | null,
-}) {
+export default function Wishes({ items }: { items: Item[] | null }) {
 
   const [view, setView] = React.useState<View>('list');
   const [selectedRooms, setSelectedRooms] = React.useState<Room[] | []>([]);
@@ -72,32 +67,48 @@ export default function Wishes({
         </Toolbar>
       </AppBar>
 
-      <Filter
-        selectedRooms={selectedRooms}
-        handleRooms={handleRooms}
-        rooms={rooms}
-      />
+      <AppBar
+        component='div'
+        position='sticky'
+        elevation={0}
+      >
+        <Toolbar>
+          <Stack
+            direction='row'
+            alignItems='baseline'
+            justifyContent='space-between'
+            sx={{ width: '100%' }}
+          >
+            <Typography
+              variant='overline'
+              sx={{ color: 'text.secondary' }}
+              component='p'
+            >
+							Items
+              <Typography component='span' sx={{ ml: 1 }}>
+                {filteredItems?.length}
+              </Typography>
+            </Typography>
+            <Typography>{totalItems(filteredItems)}</Typography>
+          </Stack>
+        </Toolbar>
 
-      <RoomTotals rooms={rooms} items={items} />
-
-      <Toolbar>
         <Stack
           direction='row'
-          alignItems='baseline'
+          flexWrap='wrap'
+          useFlexGap
+          sx={{ width: '100%', py: 0.5 }}
+          alignItems='flex-start'
           justifyContent='space-between'
-          sx={{ width: '100%' }}
         >
-          <Typography
-            variant='overline'
-            sx={{ color: 'text.secondary' }}
-            component='p'
-          >
-						Items
-            <Typography component='span' sx={{ ml: 1 }}>{filteredItems?.length}</Typography>
-          </Typography>
-          <Typography>{totalItems(filteredItems)}</Typography>
+          <RoomFilter
+            selectedRooms={selectedRooms}
+            handleRooms={handleRooms}
+          />
+
+          <RoomTotals items={items} />
         </Stack>
-      </Toolbar>
+      </AppBar>
 
       <Container maxWidth='md'>
         {(() => {

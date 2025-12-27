@@ -1,24 +1,20 @@
+import { rooms } from '@/lib/data'
 import { totalItems } from '@/lib/helpers/total-items'
-import { Item, Room, RoomProps } from '@/lib/types'
+import { Item, RoomProps } from '@/lib/types'
 import { ExpandMore } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Container, List, ListItem, ListItemText, Typography } from '@mui/material'
 
-export default function RoomTotals({
-  rooms, items,
-}: {
-	rooms: RoomProps[] | null,
-	items: Item[],
-}) {
-  const roomTotals = rooms!.map((room) => (
+export default function RoomTotals({ items }: { items: Item[] }) {
+  const roomTotals = rooms.map((room) => (
     Object.assign({
-      ...room, 
+      name: room, 
       total: 
-				totalItems(items.filter((item) => item.room_name === room.name))
-    }) as { name: Room, total: string }
+				totalItems(items.filter((item) => item.room_name === room))
+    }) as RoomProps
   ))
 
   return (
-    <Container maxWidth='sm' sx={{ mx: 0 }}>
+    <Container maxWidth='xs' sx={{ py: 1, mx: 0 }}>
       <Accordion
         variant='flat'
         disableGutters

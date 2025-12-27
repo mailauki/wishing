@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
 import { Room } from '@/lib/types'
+import slugify from 'slugify'
 
 export async function addItem(_initialState: unknown, formData: FormData) {
   const supabase = await createClient()
@@ -19,7 +20,7 @@ export async function addItem(_initialState: unknown, formData: FormData) {
     color: formData.get('color'),
     description: formData.get('description'),
     notes: formData.get('notes'),
-    slug: formData.get('name')!.toString().toLowerCase().split(' ').join('-')
+    slug: slugify(formData.get('name')!.toString().toLowerCase())
   }
 
   console.log(data)

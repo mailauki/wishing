@@ -1,14 +1,10 @@
 'use client'
-import { Room, RoomProps } from '@/lib/types';
+import { rooms } from '@/lib/data';
+import { Room } from '@/lib/types';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import * as React from 'react';
 
-export default function RoomSelect({
-  rooms, selected,
-}: {
-	rooms: RoomProps[] | null,
-	selected?: Room,
-}) {
+export default function RoomSelect({ selected }: { selected?: Room }) {
   const [room, setRoom] = React.useState(selected||'');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -27,7 +23,7 @@ export default function RoomSelect({
           value={room}
           onChange={handleChange}
         >
-          {rooms?.map((room) => <MenuItem key={room.name} value={room.name}>{room.name}</MenuItem>)}
+          {rooms.map((room) => <MenuItem key={room} value={room}>{room}</MenuItem>)}
         </Select>
       </FormControl>
     </>

@@ -1,7 +1,8 @@
 'use client'
-import { Room, RoomProps } from '@/lib/types';
+import { rooms } from '@/lib/data';
+import { Room } from '@/lib/types';
 import { Done } from '@mui/icons-material';
-import { AppBar, ToggleButton, Toolbar, Typography } from '@mui/material';
+import { ToggleButton, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
@@ -38,57 +39,48 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(() => ({
     },
 }));
 
-
-
-export default function Filter({
-  selectedRooms, handleRooms, rooms,
+export default function RoomFilter({
+  selectedRooms, handleRooms,
 }: {
 	selectedRooms: Room[] | null,
 	handleRooms: ((
 		event: React.MouseEvent<HTMLElement, MouseEvent>,
 		value: Room[]) => void),
-	rooms: RoomProps[] | null,
 }) {
   return (
-    <AppBar
-      component='div'
-      position='sticky'
-      elevation={0}
+    <Toolbar
+      sx={{
+        width: 'fit-content',
+        overflowX: 'auto', // Ensures content can still be scrolled
+        // Hide scrollbar for Chrome, Safari, Opera, Edge
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+        // Hide scrollbar for IE, Edge, Firefox
+        msOverflowStyle: 'none', // IE and Edge
+        scrollbarWidth: 'none', // Firefox
+      }}
     >
-
-      <Toolbar
-        sx={{
-          overflowX: 'auto', // Ensures content can still be scrolled
-          // Hide scrollbar for Chrome, Safari, Opera, Edge
-          '&::-webkit-scrollbar': {
-            display: 'none',
-          },
-          // Hide scrollbar for IE, Edge, Firefox
-          msOverflowStyle: 'none', // IE and Edge
-          scrollbarWidth: 'none', // Firefox
-        }}
+      <StyledToggleButtonGroup
+        value={selectedRooms}
+        onChange={handleRooms}
+        aria-label='rooms filter'
       >
-        <StyledToggleButtonGroup
-          value={selectedRooms}
-          onChange={handleRooms}
-          aria-label='rooms filter'
-        >
-          {rooms?.map((room) => (
-            <ToggleButton
-              key={room.name}
-              value={room.name}
-              aria-label={room.name}
-              sx={{
-                paddingInlineStart: 2,
-                paddingInlineEnd: 2,
-              }}
-            >
-              {selectedRooms?.includes(room.name) && <Done sx={{ mr: 1 }} />}
-              <Typography variant='button' noWrap>{room.name}</Typography>
-            </ToggleButton>
-          ))}
-        </StyledToggleButtonGroup>
-      </Toolbar>
-    </AppBar>
+        {rooms.map((room) => (
+          <ToggleButton
+            key={room}
+            value={room}
+            aria-label={room}
+            sx={{
+              paddingInlineStart: 2,
+              paddingInlineEnd: 2,
+            }}
+          >
+            {selectedRooms?.includes(room) && <Done sx={{ mr: 1 }} />}
+            <Typography variant='button' noWrap>{room}</Typography>
+          </ToggleButton>
+        ))}
+      </StyledToggleButtonGroup>
+    </Toolbar>
   )
 }

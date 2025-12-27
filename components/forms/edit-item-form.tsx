@@ -2,7 +2,7 @@
 import { Alert, AlertTitle, Button, Stack, TextField, Typography } from '@mui/material'
 import { type User } from '@supabase/supabase-js'
 import { useActionState } from 'react'
-import { Item, RoomProps } from '@/lib/types'
+import { Item } from '@/lib/types'
 import { editItem } from '@/app/(wishes)/actions'
 import RoomSelect from './room-select'
 
@@ -11,11 +11,10 @@ const initialState = {
 }
 
 export default function EditItemForm({
-  item, user, rooms,
+  item, user,
 }: {
 	item: Item,
 	user: User | null,
-	rooms: RoomProps[] | null,
 }) {
   const [state, formAction, pending] = useActionState(editItem, initialState)
 
@@ -25,12 +24,13 @@ export default function EditItemForm({
         <Typography variant='h4' component='h1'>Edit wish</Typography>
         <Typography variant='subtitle1'>Change any item details to update it</Typography>
 
-        {state?.message ?? (
-          <Alert severity='error'>
-            <AlertTitle>Error</AlertTitle>
-            {state.message}
-          </Alert>
-        )}
+        <Alert
+          severity='error'
+          sx={{ display: state.message !== '' ? 'flex' : 'none'}}
+        >
+          <AlertTitle>Error</AlertTitle>
+          {state.message}
+        </Alert>
 
         <form className='w-full max-w-sm flex flex-col gap-4'>
           <TextField
@@ -80,7 +80,7 @@ export default function EditItemForm({
             defaultValue={item.url}
             required
           />
-          <RoomSelect rooms={rooms} selected={item.room_name} />
+          <RoomSelect selected={item.room_name} />
           <TextField
             label='Brand'
             id='brand'
@@ -100,6 +100,8 @@ export default function EditItemForm({
             id='description'
             name='description'
             helperText='Description of the item'
+            multiline
+            rows={4}
             defaultValue={item.description}
           />
           <TextField

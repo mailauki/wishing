@@ -2,7 +2,6 @@
 import { Alert, AlertTitle, Button, Stack, TextField, Typography } from '@mui/material'
 import { type User } from '@supabase/supabase-js'
 import { useActionState } from 'react'
-import { RoomProps } from '@/lib/types'
 import { addItem } from '@/app/(wishes)/actions'
 import RoomSelect from './room-select'
 
@@ -10,7 +9,7 @@ const initialState = {
   message: '',
 }
 
-export default function AddItemForm({ user, rooms }: { user: User | null, rooms: RoomProps[] | null }) {
+export default function AddItemForm({ user }: { user: User | null }) {
   const [state, formAction, pending] = useActionState(addItem, initialState)
 
   return (
@@ -19,12 +18,13 @@ export default function AddItemForm({ user, rooms }: { user: User | null, rooms:
         <Typography variant='h4' component='h1'>Add wish</Typography>
         <Typography variant='subtitle1'>Enter item details to add it to your wishes list</Typography>
 
-        {state?.message ?? (
-          <Alert severity='error'>
-            <AlertTitle>Error</AlertTitle>
-            {state.message}
-          </Alert>
-        )}
+        <Alert
+          severity='error'
+          sx={{ display: state.message !== '' ? 'flex' : 'none'}}
+        >
+          <AlertTitle>Error</AlertTitle>
+          {state.message}
+        </Alert>
 
         <form className='w-full max-w-sm flex flex-col gap-4'>
           <TextField
@@ -58,7 +58,7 @@ export default function AddItemForm({ user, rooms }: { user: User | null, rooms:
             helperText='Source url of the item'
             required
           />
-          <RoomSelect rooms={rooms} />
+          <RoomSelect />
           <TextField
             label='Brand'
             id='brand'
@@ -76,6 +76,8 @@ export default function AddItemForm({ user, rooms }: { user: User | null, rooms:
             id='description'
             name='description'
             helperText='Description of the item'
+            multiline
+            rows={4}
           />
           <TextField
             label='Notes'

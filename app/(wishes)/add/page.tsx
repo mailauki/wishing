@@ -9,11 +9,9 @@ export default async function AddItem() {
     data: { user },
   } = await supabase.auth.getUser()
 	
-  const { data: rooms } = await supabase.from('rooms').select('name')
-	
   return (
     <Container maxWidth='xs'>
-      <AddItemForm user={user} rooms={rooms} />
+      <AddItemForm user={user} />
     </Container>
   )
 }

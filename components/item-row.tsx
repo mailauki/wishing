@@ -1,4 +1,4 @@
-import { formatCurrency } from '@/lib/helpers/format-currency';
+import { formatCurrencyShort } from '@/lib/helpers/format-currency';
 import { Item } from '@/lib/types';
 import { Category } from '@mui/icons-material';
 import { Avatar, ListItemAvatar, ListItemButton, ListItemText, Typography } from '@mui/material';
@@ -38,7 +38,7 @@ export default function ItemRow({ item }: { item: Item }) {
         sx={{ pl: item.image ? 0 : 12.5 }}
       />
       <Typography sx={{ ml: 2 }}>
-        {formatCurrency(item.price)}
+        {formatCurrencyShort(item.price)}
       </Typography>
     </ListItemButton>
   )
