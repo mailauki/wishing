@@ -8,6 +8,7 @@ import reactHooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 import prettier from "eslint-config-prettier/flat";
 import prettierConfig from "eslint-plugin-prettier/recommended";
+import unusedImports from "eslint-plugin-unused-imports";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -21,6 +22,7 @@ const eslintConfig = defineConfig([
       jsxA11yPlugin,
       nextPlugin,
       prettierConfig,
+      "unused-imports": unusedImports,
     },
     rules: {
       ...reactPlugin.configs.recommended.rules,
@@ -46,18 +48,25 @@ const eslintConfig = defineConfig([
           usePrettierrc: false,
         },
       ],
+
+      // Disable the base rule as it can't be safely autofixed
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
       "react/no-unknown-property": "off",
       "react/jsx-no-target-blank": "off",
-      "jsx-a11y/alt-text": ["warn", { elements: ["img"], img: ["Image"] }],
-      "jsx-a11y/media-has-caption": "warn",
       "react/no-unescaped-entities": "off",
       "@next/next/no-page-custom-font": "off",
       "no-undef": "error",
       "react/react-in-jsx-scope": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "off", // If using TypeScript
+
+      // Enable the plugin's rules
+      "jsx-a11y/alt-text": ["warn", { elements: ["img"], img: ["Image"] }],
+      "jsx-a11y/media-has-caption": "warn",
+      "unused-imports/no-unused-imports": "error",
       "@typescript-eslint/no-unused-vars": [
-        "error", // or "error"
+        "error",
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",

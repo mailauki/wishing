@@ -8,10 +8,20 @@ import RoomTotals from './room-totals'
 import { totalItems } from '@/lib/helpers/total-items'
 import ViewToggle from './view-toggle'
 import RoomFilter from '@/components/room-filter'
+import SortMenu from './sort-menu'
 
 export default function Wishes({ items }: { items: Item[] | null }) {
   const [view, setView] = React.useState<View>('list')
   const [selectedRooms, setSelectedRooms] = React.useState<Room[] | []>([])
+  const [selectedSort, setSelectedSort] = React.useState(1)
+  // const sort = sortLabels.find((sort) => sort.index === selectedSort)?.slug
+
+  const handleSort = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => {
+    setSelectedSort(index)
+  }
 
   const handleView = (
     event: React.MouseEvent<HTMLElement>,
@@ -80,32 +90,28 @@ export default function Wishes({ items }: { items: Item[] | null }) {
           </Stack>
         </Toolbar>
 
-        <Stack
-          direction='row'
-          flexWrap='wrap'
-          useFlexGap
-          sx={{ width: '100%', py: 0.5 }}
-          alignItems='flex-start'
-          justifyContent='space-between'
-        >
+        <Toolbar>
+          <SortMenu selectedSort={selectedSort} handleSort={handleSort} />
           <RoomFilter selectedRooms={selectedRooms} handleRooms={handleRooms} />
-
-          <RoomTotals items={items} />
-        </Stack>
+        </Toolbar>
       </AppBar>
 
-      <Container maxWidth='md'>
-        {(() => {
-          switch (view) {
-            case 'list':
-              return <WishesList items={filteredItems} />
-            case 'module':
-              return <WishesModule items={filteredItems} />
-            default:
-              return <p>No items yet</p>
-          }
-        })()}
-      </Container>
+      <Stack direction={{ sm: 'column', md: 'row' }}>
+        <RoomTotals items={items} />
+
+        <Container maxWidth='md' sx={{ pb: 16 }}>
+          {(() => {
+            switch (view) {
+              case 'list':
+                return <WishesList items={filteredItems} />
+              case 'module':
+                return <WishesModule items={filteredItems} />
+              default:
+                return <p>No items yet</p>
+            }
+          })()}
+        </Container>
+      </Stack>
     </>
   )
 }

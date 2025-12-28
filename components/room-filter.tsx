@@ -2,7 +2,7 @@
 import { rooms } from '@/lib/data'
 import { Room } from '@/lib/types'
 import { Done } from '@mui/icons-material'
-import { ToggleButton, Toolbar, Typography } from '@mui/material'
+import { Box, ToggleButton, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
@@ -50,7 +50,7 @@ export default function RoomFilter({
   ) => void
 }) {
   return (
-    <Toolbar
+    <Box
       sx={{
         width: 'fit-content',
         overflowX: 'auto', // Ensures content can still be scrolled
@@ -85,6 +85,6 @@ export default function RoomFilter({
           </ToggleButton>
         ))}
       </StyledToggleButtonGroup>
-    </Toolbar>
+    </Box>
   )
 }

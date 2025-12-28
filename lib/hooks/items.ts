@@ -12,6 +12,27 @@ export const getItems = cache(async () => {
     .from('items')
     .select('*')
     .match({ user_id: user?.id })
+    .order('updated_at', { ascending: true })
+
+  // let query = supabase.from('items').select('*').match({ user_id: user?.id })
+
+  // switch (sort) {
+  //   case 'name':
+  //     query = query.order('name', { ascending: true })
+  //   case 'created_at':
+  //     query = query.order('created_at', { ascending: true })
+  //   case 'updated_at':
+  //     query = query.order('updated_at', { ascending: true })
+  //   case 'price':
+  //     query = query.order('price', { ascending: true })
+  //   default:
+  //     query = query.order('updated_at', { ascending: true })
+  // }
+
+  // const { data: items } = await query
+
+  console.log(user)
+  console.log(items)
 
   return items
 })

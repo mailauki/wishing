@@ -6,7 +6,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Container,
+  AppBar,
   List,
   ListItem,
   ListItemText,
@@ -23,7 +23,18 @@ export default function RoomTotals({ items }: { items: Item[] }) {
   )
 
   return (
-    <Container maxWidth='xs' sx={{ py: 1, mx: 0 }}>
+    <AppBar
+      component='div'
+      position='sticky'
+      color='transparent'
+      elevation={0}
+      sx={{
+        width: { sm: '100%', md: 'fit-content' },
+        minWidth: 300,
+        px: 3,
+        pb: 3,
+      }}
+    >
       <Accordion variant='flat' disableGutters>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography component='span'>Room Totals</Typography>
@@ -61,6 +72,6 @@ export default function RoomTotals({ items }: { items: Item[] }) {
           </List>
         </AccordionDetails>
       </Accordion>
-    </Container>
+    </AppBar>
   )
 }
